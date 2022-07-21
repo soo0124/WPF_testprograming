@@ -1,0 +1,61 @@
+﻿<Window x:Class="WPF_TestProgram01.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_TestProgram01"
+        xmlns:vm="clr-namespace:WPF_TestProgram01.ViewModels"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        Height="700" Width="1200">
+
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Border Background="Green" Grid.Row="1" Grid.Column="0"/>
+        <Border Background="Yellow" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+
+        <ComboBox x:Name="comPort"  ItemsSource="{Binding mainModel._comPort}" SelectedValue="{Binding mainModel.Pick_comPort}"    Width="120" Height="30"  VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="1" Margin="30,50,0,0"/>
+        <ComboBox x:Name="baudRate" ItemsSource="{Binding mainModel._baudRate}" SelectedValue="{Binding mainModel.Pick_baudRate}" SelectedIndex="3"  Width="120" Height="30"  VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="1" Margin="210,50,0,0"/>
+        <ComboBox x:Name="dataBit"  ItemsSource="{Binding mainModel._dataBits}" SelectedValue="{Binding mainModel.Pick_dataBit}" SelectedIndex="1" Width="120" Height="30"  VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="1" Margin="390,50,0,0"/>
+        <ComboBox x:Name="stopBit"  ItemsSource="{Binding mainModel._stopBits}" SelectedValue="{Binding mainModel.Pick_stopBit}" SelectedIndex="0" Width="120" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="1" Margin="570,50,0,0"/>
+        <ComboBox x:Name="parityBit" ItemsSource="{Binding mainModel._parityBits}" SelectedValue="{Binding mainModel.Pick_parityBit}" SelectedIndex="1" Width="120" Height="30"  VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="1" Margin="750,50,0,0"/>
+
+
+        <Button x:Name="btn_Connect" Width="150" Height="50" Content="{Binding mainModel.btn_start_name, UpdateSourceTrigger=PropertyChanged}" FontSize="20" FontWeight="Bold" Foreground="Red" Command="{Binding btn_start}" Background="{Binding mainModel.btn_start_color}"/>
+        <Button x:Name="btn_OnLineCheck" Width="150" Height="40" Content="ON-Line Check" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="1" Margin="0,20,0,0" Command="{Binding btn_OnlineCheck}"/>
+        <Button x:Name="btn_WriteCard" Width="150" Height="40" Content="Write CardKey" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="1" Margin="0,90,0,0" Command="{Binding btn_WriteCard}"/>
+        <Button x:Name="btn_ReadCard" Width="150" Height="40" Content="Read CardKey" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="1" Margin="0,160,0,0" Command="{Binding btn_ReadCard}"/>
+        <Button x:Name="btn_RequestCard" Width="150" Height="40" Content="Request CardKey Data" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="1" Margin="0,230,0,0"/>
+        <Button x:Name="btn_SetCard" Width="150" Height="40" Content="Set Card Sector" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="1" Margin="0,300,0,0"/>
+        <Button x:Name="btn_SetSector" Width="150" Height="40" Content="Set Card Sector Key" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="1" Margin="0,370,0,0"/>
+        <Button x:Name="btn_SetEncoder" Width="150" Height="40" Content="Set Encoder Write Data" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="1" Margin="0,440,0,0" Command="{Binding btn_DBconn}"/>
+
+        
+        <Label Content="1. COM Port" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="1" Margin="30,20,0,0" FontWeight="Bold" FontSize="14"/>
+        <Label Content="2. Baud Rate" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="1" Margin="210,20,0,0" FontWeight="Bold" FontSize="14"/>
+        <Label Content="3. Data Bit" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="1" Margin="390,20,0,0" FontWeight="Bold" FontSize="14"/>
+        <Label Content="4. Stop Bit" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="1" Margin="570,20,0,0" FontWeight="Bold" FontSize="14"/>
+        <Label Content="5. Parity Bit" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="1" Margin="750,20,0,0" FontWeight="Bold" FontSize="14"/>
+
+        <Frame Source="{Binding mainModel.frameSource}" x:Name="frame" Grid.Column="1" Grid.Row="1" NavigationUIVisibility="Hidden">
+            <Frame.Template>
+                <ControlTemplate TargetType="{x:Type Frame}">
+                    <ContentPresenter DataContext="{TemplateBinding DataContext}"/>
+                </ControlTemplate>
+            </Frame.Template>
+         </Frame>
+    </Grid>
+</Window>

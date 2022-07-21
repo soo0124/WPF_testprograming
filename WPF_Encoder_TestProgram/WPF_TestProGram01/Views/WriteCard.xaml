@@ -1,0 +1,66 @@
+﻿<Page x:Class="WPF_TestProgram01.Views.WriteCard"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WPF_TestProgram01.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="WriteCard">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Label Content="Send Message  : " Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="110" Height="30" Margin="15,30,0,0" FontWeight="Bold" Foreground="Blue"/>
+        <Label Content="Received Data : " Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="110" Height="30" Margin="15,70,0,0" FontWeight="Bold" Foreground="Red"/>
+
+        <TextBox x:Name="txb_Send1" Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="400" Height="30" Margin="0,30,0,0" Text="{Binding writeModel.tbx_send, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox x:Name="txb_Receive1" Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="400" Height="30" Margin="0,70,0,0" Text="{Binding writeModel.tbx_receive, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Button x:Name="btn_TX1" Content="명령 보내기" Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" Width="100" Height="40" Margin="0,0,0,100" Command="{Binding btn_transmit}"  />
+        <Button x:Name="btn_Clear1" Content="Clear" Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" Width="100" Height="40" Margin="0,0,0,40" Command="{Binding btn_clear}"/>
+
+        <Rectangle x:Name="rtg_packet" Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="630" Height="320" Margin="20,48,0,25" Stroke="Black"/>
+
+        <Label Content="STX " Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Height="30" Margin="30,100,0,0" FontWeight="Bold" Foreground="Blue"/>
+        <Label Content="DTC " Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Height="30" Margin="30,130,0,0" FontWeight="Bold" Foreground="Blue"/>
+        <Label Content="Endoder " Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Height="30" Margin="30,160,0,0" FontWeight="Bold" Foreground="Blue"/>
+        <Label Content="Length " Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Height="30" Margin="30,190,0,0" FontWeight="Bold" Foreground="Blue"/>
+        <Label Content="Command " Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Height="30" Margin="30,220,0,0" FontWeight="Bold" Foreground="Blue"/>
+        <Label Content="Sub " Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Height="30" Margin="30,250,0,0" FontWeight="Bold" Foreground="Blue"/>
+        <Label Content="ACK " Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Height="30" Margin="30,280,0,0" FontWeight="Bold" Foreground="Blue"/>
+        <Label Content="UID " Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Height="30" Margin="30,310,0,0" FontWeight="Bold" Foreground="Blue"/>
+        <Label Content="MOBILE " Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Height="30" Margin="30,340,0,0" FontWeight="Bold" Foreground="Blue"/>
+
+        <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Height="30" Margin="150,105,0,0" FontWeight="Bold" Text="{Binding writeModel.stx_value, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Height="30" Margin="150,135,0,0" FontWeight="Bold" Text="{Binding writeModel.dtc_value, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Height="30" Margin="150,165,0,0" FontWeight="Bold" Text="{Binding writeModel.ecd_value, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Height="30" Margin="150,195,0,0" FontWeight="Bold" Text="{Binding writeModel.len_value, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Height="30" Margin="150,225,0,0" FontWeight="Bold" Text="{Binding writeModel.cmd_value, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Height="30" Margin="150,255,0,0" FontWeight="Bold" Text="{Binding writeModel.sub_value, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Height="30" Margin="150,285,0,0" FontWeight="Bold" Text="{Binding writeModel.ack_value, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Height="30" Margin="150,315,0,0" FontWeight="Bold" Text="{Binding writeModel.uid_value, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Height="30" Margin="150,345,0,0" FontWeight="Bold" Text="{Binding writeModel.mobile_value, UpdateSourceTrigger=PropertyChanged}"/>
+
+
+        <Label Content="CARD DATA " Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Height="30" Margin="300,100,0,0" FontWeight="Bold" Foreground="Blue"/>
+        <Label Content="WS ID " Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Height="30" Margin="300,130,0,0" FontWeight="Bold" Foreground="Blue"/>
+        <Label Content="CRC " Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Height="30" Margin="300,160,0,0" FontWeight="Bold" Foreground="Blue"/>
+        <Label Content="ETX " Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Height="30" Margin="300,190,0,0" FontWeight="Bold" Foreground="Blue"/>
+
+        <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" Height="30" Margin="420,105,0,0" FontWeight="Bold" Text="{Binding writeModel.cardData_value, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" Height="30" Margin="420,135,0,0" FontWeight="Bold" Text="{Binding writeModel.wsID_value, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" Height="30" Margin="420,165,0,0" FontWeight="Bold" Text="{Binding writeModel.crc_value, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" Height="30" Margin="420,195,0,0" FontWeight="Bold" Text="{Binding writeModel.etx_value, UpdateSourceTrigger=PropertyChanged}"/>
+
+    </Grid>
+    
+</Page>

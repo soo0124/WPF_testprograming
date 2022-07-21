@@ -1,0 +1,17 @@
+C:\Users\swjang\source\repos\WPF_TestProGram01\WpfApp1\bin\Debug\WpfApp1.exe.config
+C:\Users\swjang\source\repos\WPF_TestProGram01\WpfApp1\bin\Debug\WpfApp1.exe
+C:\Users\swjang\source\repos\WPF_TestProGram01\WpfApp1\bin\Debug\WpfApp1.pdb
+C:\Users\swjang\source\repos\WPF_TestProGram01\WpfApp1\obj\Debug\WpfApp1.csproj.AssemblyReference.cache
+C:\Users\swjang\source\repos\WPF_TestProGram01\WpfApp1\obj\Debug\WpfApp1.csproj.SuggestedBindingRedirects.cache
+C:\Users\swjang\source\repos\WPF_TestProGram01\WpfApp1\obj\Debug\Views\MainWindow.g.cs
+C:\Users\swjang\source\repos\WPF_TestProGram01\WpfApp1\obj\Debug\App.g.cs
+C:\Users\swjang\source\repos\WPF_TestProGram01\WpfApp1\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\swjang\source\repos\WPF_TestProGram01\WpfApp1\obj\Debug\WpfApp1_MarkupCompile.cache
+C:\Users\swjang\source\repos\WPF_TestProGram01\WpfApp1\obj\Debug\WpfApp1_MarkupCompile.lref
+C:\Users\swjang\source\repos\WPF_TestProGram01\WpfApp1\obj\Debug\Views\MainWindow.baml
+C:\Users\swjang\source\repos\WPF_TestProGram01\WpfApp1\obj\Debug\WpfApp1.g.resources
+C:\Users\swjang\source\repos\WPF_TestProGram01\WpfApp1\obj\Debug\WpfApp1.Properties.Resources.resources
+C:\Users\swjang\source\repos\WPF_TestProGram01\WpfApp1\obj\Debug\WpfApp1.csproj.GenerateResource.cache
+C:\Users\swjang\source\repos\WPF_TestProGram01\WpfApp1\obj\Debug\WpfApp1.csproj.CoreCompileInputs.cache
+C:\Users\swjang\source\repos\WPF_TestProGram01\WpfApp1\obj\Debug\WpfApp1.exe
+C:\Users\swjang\source\repos\WPF_TestProGram01\WpfApp1\obj\Debug\WpfApp1.pdb

@@ -1,0 +1,10 @@
+is_global = true
+build_property.TargetFramework = net6.0-windows
+build_property.TargetPlatformMinVersion = 7.0
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = WPF_TestProgram01_fdwuiisb_wpftmp
+build_property.ProjectDir = C:\Users\swjang\Desktop\WPF_TestProgram01 (3)\WPF_TestProgram01 (2)\WPF_TestProGram01\

@@ -1,0 +1,20 @@
+﻿WPF_TestProgram01
+1.0.0.0
+
+exe
+C#
+.cs
+C:\Users\swjang\Desktop\WPF_TestProgram220711\WPF_TestProgram01 (2)\WPF_TestProGram01\obj\Debug\net6.0-windows\
+WPF_TestProgram01
+none
+false
+TRACE;DEBUG;NET;NET6_0;NETCOREAPP
+C:\Users\swjang\Desktop\WPF_TestProgram220711\WPF_TestProgram01 (2)\WPF_TestProGram01\App.xaml
+8-423094597
+
+21-54345775
+2031300513556
+Views\MainWindow.xaml;Views\OnLineCheck.xaml;Views\ReadCard.xaml;Views\RequestCard.xaml;Views\SetCard.xaml;Views\SetCardKey.xaml;Views\SetEncoder.xaml;Views\WriteCard.xaml;
+
+False
+
