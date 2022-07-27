@@ -28,13 +28,13 @@ namespace WPF_TestProgram01.ViewModels
         public WriteModel writeModel { get; set; }
 
         public ReadModel readModel { get; set; }
-        
+
         public DbModel dbModel { get; set; }
 
         public Command btn_start { get; set; }
 
         public Command btn_transmit { get; set; }
- 
+
         public Command btn_clear { get; set; }
 
         public Command btn_WriteCard { get; set; }
@@ -59,7 +59,7 @@ namespace WPF_TestProgram01.ViewModels
         public string TXsqlDate;
         public string RXsqlDate;
 
- 
+
         public MainViewModel()
         {
             mainModel = new MainModel();
@@ -78,7 +78,7 @@ namespace WPF_TestProgram01.ViewModels
                                   "root",
                                   "racos5117");
 
-            
+
 
             btn_start = new Command(Execute_Start, CanExecute_Start);
 
@@ -99,7 +99,7 @@ namespace WPF_TestProgram01.ViewModels
             //btn_DB_insert = new Command(Execute_InsertDB, CanExecute_InsertDB);
         }
 
-        private bool CanExecute_Online(object arg) { return true;  }
+        private bool CanExecute_Online(object arg) { return true; }
         private void Execute_Online(object obj)
         {
             mainModel.frameSource = "/Views/OnLineCheck.xaml";
@@ -128,7 +128,7 @@ namespace WPF_TestProgram01.ViewModels
         }
 
         private bool CanExecute_Clear(object arg) { return true; }
-        private void Execute_Clear(object obj) 
+        private void Execute_Clear(object obj)
         {
             switch (pageNum)
             {
@@ -185,7 +185,7 @@ namespace WPF_TestProgram01.ViewModels
         private bool CanExecute_TX(object arg) { return true; } //CanExecute = Execute 코드 실행 여부 결정 (True: 호출, False: 호출X)
         private void Execute_TX(object obj) //DATA Transmit
         {
-            
+
 
             try
             {
@@ -223,7 +223,7 @@ namespace WPF_TestProgram01.ViewModels
             {
                 MessageBox.Show("Port is not open\n" + ex.ToString(), ex.Message);
             }
-            
+
         }
 
         /*
@@ -275,7 +275,7 @@ namespace WPF_TestProgram01.ViewModels
             else
             {
                 serialPort.Close();
-                
+
                 MessageBox.Show("Port Close");
                 mainModel.btn_start_name = "연결 시작!";
                 mainModel.btn_start_color = "White";
@@ -284,123 +284,138 @@ namespace WPF_TestProgram01.ViewModels
 
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e) //Receive
         {
-            if(serialPort.BytesToRead > 0)
+            string hexString = String.Empty;
+            RXsqlDate = dateTime.ToString("yyyy-MM-dd HH:mm:ss");
+
+            if (serialPort.BytesToRead > 0)
             {
-                string hexString = String.Empty;
-                RXsqlDate = dateTime.ToString("yyyy-MM-dd HH:mm:ss");
-
-                int plagbit = 0;
-                int packet_Length = 0;
-                byte[] bytes = new byte[serialPort.BytesToRead]; //RX Length
-
-                for (int i = 0; i < bytes.Length; i++)                                                
+                while (serialPort.BytesToRead > 0)
                 {
                     list.Add((byte)serialPort.ReadByte());
                 }
 
+                //최소 Length 비교
+                if (list.Count < 4)
+                {
+                    return;
+                }
+
+                //STX Check
+                if (list.First() != 40)
+                {
+                    list.Clear();
+                    return;
+                }
+
                 switch (list[4])
                 {
-                    case 217:   //D9 - Online Check
-                        packet_Length = 8;
+                    case 217: //D9 - Online Check
+                        if (list[5] > 9) list.Clear();
                         break;
 
-                    case 200:   //C8 - Write Card
-                        packet_Length = 67;
+                    case 200: //C8 - Write Card
+
                         break;
 
-                    case 201:   //C9 - Read Card
-                        if (list[5] == 1) packet_Length = 64;   //C9 - sub cmd
-                        else if (list[5] == 2) packet_Length = 27;
+                    case 201: //C9 - Read Card
+
                         break;
                 }
 
-                if(list.Count > packet_Length)  //7B000108D901547D,  7B00011CC9010000000000000000000000000000000000000000407D (Read)
+                //ETX Check
+                if (list.Last() != 41)
                 {
-                    if ((list[list.Count - 1] == 41) && (list[0] == 40)) //STX, ETX Checking
-                    {
-                        for (int i = 0; i < list.Count; i++)
-                        {
-                            hexString += string.Format("{0:X2}", list[i]);
-                        }
-
-                        switch (pageNum)
-                        {
-                            case 0:
-                                onlineModel.tbx_receive = hexString;
-                                onlineModel.stx_value = hexString.Substring(0, 2);
-                                onlineModel.dtc_value = hexString.Substring(2, 2);
-                                onlineModel.ecd_value = hexString.Substring(4, 2);
-                                onlineModel.len_value = hexString.Substring(6, 2);
-                                onlineModel.cmd_value = hexString.Substring(8, 2);
-                                onlineModel.sub_value = hexString.Substring(10, 2);
-                                onlineModel.ack_value = hexString.Substring(12, 2);
-                                onlineModel.crc_value = hexString.Substring(14, 2);
-                                onlineModel.etx_value = hexString.Substring(16, 2);
-                                break;
-
-                            case 1:
-                                writeModel.tbx_receive = hexString;
-                                writeModel.stx_value = hexString.Substring(0, 2);
-                                writeModel.dtc_value = hexString.Substring(2, 2);
-                                writeModel.ecd_value = hexString.Substring(4, 2);
-                                writeModel.len_value = hexString.Substring(6, 2);
-                                writeModel.cmd_value = hexString.Substring(8, 2);
-                                writeModel.sub_value = hexString.Substring(10, 2);
-                                writeModel.ack_value = hexString.Substring(12, 2);
-                                writeModel.crc_value = hexString.Substring(14, 2);
-                                writeModel.etx_value = hexString.Substring(16, 2);
-                                break;
-
-                            case 2:
-                                readModel.tbx_receive = hexString;
-                                readModel.stx_value = hexString.Substring(0, 2);
-                                readModel.dtc_value = hexString.Substring(2, 2);
-                                readModel.ecd_value = hexString.Substring(4, 2);
-                                readModel.len_value = hexString.Substring(6, 2);
-                                readModel.cmd_value = hexString.Substring(8, 2);
-                                readModel.sub_value = hexString.Substring(10, 2);
-
-                                if (list[5] == 1) //Yes CARD
-                                {
-                                    readModel.uid_value = hexString.Substring(12, 10);
-                                    readModel.cardData_value = hexString.Substring(22, 32);
-                                    readModel.cardData_value2 = hexString.Substring(54, 32);
-                                    readModel.wsID_value = hexString.Substring(86, 40);
-                                    readModel.crc_value = hexString.Substring(126, 2);
-                                    readModel.etx_value = hexString.Substring(128, 2);
-                                }
-                                else if (list[5] == 2)  //No CARD
-                                {
-                                    readModel.wsID_value = hexString.Substring(12, 40);
-                                    readModel.crc_value = hexString.Substring(52, 2);
-                                    readModel.etx_value = hexString.Substring(54, 2);
-                                }
-                                break;
-                        }
-
-                        TXsqlDate = dateTime.ToString("yyyy-MM-dd HH:mm:ss");
-                        mariaDB.AddDB(TXsqlDate, onlineModel.tbx_send, RXsqlDate, hexString);
-                        list.Clear();
-                    }
+                    list.Clear();
+                    return;
                 }
+
+                for (int i = 0; i < list.Count; i++) hexString += string.Format("{0:X2}", list[i]);
+
+                switch (pageNum)
+                {
+                    case 0:
+                        onlineModel.tbx_receive = hexString;
+                        onlineModel.stx_value = hexString.Substring(0, 2);
+                        onlineModel.dtc_value = hexString.Substring(2, 2);
+                        onlineModel.ecd_value = hexString.Substring(4, 2);
+                        onlineModel.len_value = hexString.Substring(6, 2);
+                        onlineModel.cmd_value = hexString.Substring(8, 2);
+                        onlineModel.sub_value = hexString.Substring(10, 2);
+                        onlineModel.ack_value = hexString.Substring(12, 2);
+                        onlineModel.crc_value = hexString.Substring(14, 2);
+                        onlineModel.etx_value = hexString.Substring(16, 2);
+                        break;
+
+                    case 1:
+                        writeModel.tbx_receive = hexString;
+                        writeModel.stx_value = hexString.Substring(0, 2);
+                        writeModel.dtc_value = hexString.Substring(2, 2);
+                        writeModel.ecd_value = hexString.Substring(4, 2);
+                        writeModel.len_value = hexString.Substring(6, 2);
+                        writeModel.cmd_value = hexString.Substring(8, 2);
+                        writeModel.sub_value = hexString.Substring(10, 2);
+                        writeModel.ack_value = hexString.Substring(12, 2);
+                        writeModel.crc_value = hexString.Substring(14, 2);
+                        writeModel.etx_value = hexString.Substring(16, 2);
+                        break;
+
+                    case 2:
+                        readModel.tbx_receive = hexString;
+                        readModel.stx_value = hexString.Substring(0, 2);
+                        readModel.dtc_value = hexString.Substring(2, 2);
+                        readModel.ecd_value = hexString.Substring(4, 2);
+                        readModel.len_value = hexString.Substring(6, 2);
+                        readModel.cmd_value = hexString.Substring(8, 2);
+                        readModel.sub_value = hexString.Substring(10, 2);
+
+                        if (list[5] == 1) //Yes CARD
+                        {
+                            readModel.uid_value = hexString.Substring(12, 10);
+                            readModel.cardData_value = hexString.Substring(22, 32);
+                            readModel.cardData_value2 = hexString.Substring(54, 32);
+                            readModel.wsID_value = hexString.Substring(86, 40);
+                            readModel.crc_value = hexString.Substring(126, 2);
+                            readModel.etx_value = hexString.Substring(128, 2);
+                        }
+                        else if (list[5] == 2)  //No CARD
+                        {
+                            readModel.wsID_value = hexString.Substring(12, 40);
+                            readModel.crc_value = hexString.Substring(52, 2);
+                            readModel.etx_value = hexString.Substring(54, 2);
+                        }
+                        break;
+
+                        
+                }
+
+                TXsqlDate = dateTime.ToString("yyyy-MM-dd HH:mm:ss");
+                mariaDB.AddDB(TXsqlDate, onlineModel.tbx_send, RXsqlDate, hexString);
+
+                list.Clear();
             }
         }
 
         public static byte[] ConvertHexStringToByte(string convertString)  // HEX String -> Byte[] 
-        { 
-            byte[] convertArr = new byte[convertString.Length / 2]; 
-            for (int i = 0; i < convertArr.Length; i++) 
-            { 
-                convertArr[i] = Convert.ToByte(convertString.Substring(i * 2, 2), 16); 
-            } 
-            return convertArr; 
+        {
+            byte[] convertArr = new byte[convertString.Length / 2];
+            for (int i = 0; i < convertArr.Length; i++)
+            {
+                convertArr[i] = Convert.ToByte(convertString.Substring(i * 2, 2), 16);
+            }
+            return convertArr;
         }
 
         public static string ConvertByteToHexString(byte[] convertArr)     // Byte[] -> HEX String
         {
-            string convertArrString = string.Empty; 
-            convertArrString = string.Concat(Array.ConvertAll(convertArr, byt => byt.ToString("X2"))); 
-            return convertArrString; 
+            string convertArrString = string.Empty;
+            convertArrString = string.Concat(Array.ConvertAll(convertArr, byt => byt.ToString("X2")));
+            return convertArrString;
+        }
+
+        private byte[] StringToByte(string str)
+        {
+            byte[] StrByte = Encoding.UTF8.GetBytes(str);
+            return StrByte;
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

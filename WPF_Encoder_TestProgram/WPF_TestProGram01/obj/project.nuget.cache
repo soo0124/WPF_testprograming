@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "r3yLPHGiPcMbu7TJRZofgiH6bmpgj768+FXMIyPyT2HmpHtyoHfjCda/4ipLtVq4fTOsSZBPvj05iOru0YdCSQ==",
+  "dgSpecHash": "jMDHGV9k/zloIA/8dSIaW2CyMF5eCnKhDQADu8bIAp3AOsZKpQLzN9Lsir2j3Goarux93ltgl/CGpdUyYQ+pmw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\swjang\\Desktop\\WPF_TestProgram220711\\WPF_TestProgram01 (2)\\WPF_TestProGram01\\WPF_TestProgram01.csproj",
+  "projectFilePath": "C:\\Users\\swjang\\Desktop\\개인자료\\Git_WPF\\WPF_Encoder_TestProgram\\WPF_TestProGram01\\WPF_TestProgram01.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\swjang\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\swjang\\.nuget\\packages\\google.protobuf\\3.19.4\\google.protobuf.3.19.4.nupkg.sha512",
