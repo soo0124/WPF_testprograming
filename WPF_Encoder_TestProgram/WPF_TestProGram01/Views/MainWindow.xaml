@@ -34,7 +34,7 @@
         <ComboBox x:Name="parityBit" ItemsSource="{Binding mainModel._parityBits}" SelectedValue="{Binding mainModel.Pick_parityBit}" SelectedIndex="1" Width="120" Height="30"  VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="1" Margin="750,50,0,0"/>
 
 
-        <Button x:Name="btn_Connect" Width="150" Height="50" Content="{Binding mainModel.btn_start_name, UpdateSourceTrigger=PropertyChanged}" FontSize="20" FontWeight="Bold" Foreground="Red" Command="{Binding btn_start}" Background="{Binding mainModel.btn_start_color}"/>
+        <Button x:Name="btn_Connect" Width="150" Height="50" Content="{Binding mainModel.btn_start_name, UpdateSourceTrigger=PropertyChanged}" FontSize="20" FontWeight="Bold" Foreground="Red"  Background="{Binding mainModel.btn_start_color}" Click="{local:MethodBinding btn_Connect_Click}"/>
         <Button x:Name="btn_OnLineCheck" Width="150" Height="40" Content="ON-Line Check" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="1" Margin="0,20,0,0" Command="{Binding btn_OnlineCheck}"/>
         <Button x:Name="btn_WriteCard" Width="150" Height="40" Content="Write CardKey" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="1" Margin="0,90,0,0" Command="{Binding btn_WriteCard}"/>
         <Button x:Name="btn_ReadCard" Width="150" Height="40" Content="Read CardKey" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="1" Margin="0,160,0,0" Command="{Binding btn_ReadCard}"/>

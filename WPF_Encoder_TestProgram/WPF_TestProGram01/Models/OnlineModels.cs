@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 //OnLineCheck's models
-namespace WPF_TestProgram01.Models
+namespace WPF_TestProgram01.Models 
 {
-    public class OnlineModels : INotifyPropertyChanged
+    public class OnlineModels : Notify
     {
         public string tbx_send { get; set; } //TX textbox
 
@@ -19,7 +19,7 @@ namespace WPF_TestProgram01.Models
             set
             {
                 _tbx_receive = value;
-                OnPropertyChanged("tbx_receive"); //Event
+                base.OnPropertyChanged("tbx_receive"); //Event
             }
         }
 
@@ -31,7 +31,7 @@ namespace WPF_TestProgram01.Models
             set
             {
                 _stx_value = value;
-                OnPropertyChanged("stx_value");
+                base.OnPropertyChanged("stx_value");
             }
         }
 
@@ -42,7 +42,7 @@ namespace WPF_TestProgram01.Models
             set
             {
                 _dtc_value = value;
-                OnPropertyChanged("dtc_value");
+                base.OnPropertyChanged("dtc_value");
             }
         }
 
@@ -53,7 +53,7 @@ namespace WPF_TestProgram01.Models
             set
             {
                 _ecd_value = value;
-                OnPropertyChanged("ecd_value");
+                base.OnPropertyChanged("ecd_value");
             }
         }
 
@@ -64,7 +64,7 @@ namespace WPF_TestProgram01.Models
             set
             {
                 _len_value = value;
-                OnPropertyChanged("len_value");
+                base.OnPropertyChanged("len_value");
             }
         }
 
@@ -75,7 +75,7 @@ namespace WPF_TestProgram01.Models
             set
             {
                 _cmd_value = value;
-                OnPropertyChanged("cmd_value");
+                base.OnPropertyChanged("cmd_value");
             }
         }
 
@@ -86,7 +86,7 @@ namespace WPF_TestProgram01.Models
             set
             {
                 _sub_value = value;
-                OnPropertyChanged("sub_value");
+                base.OnPropertyChanged("sub_value");
             }
         }
 
@@ -97,7 +97,7 @@ namespace WPF_TestProgram01.Models
             set 
             {
                 _ack_value = value;
-                OnPropertyChanged("ack_value");
+                base.OnPropertyChanged("ack_value");
             }
         }
 
@@ -108,7 +108,7 @@ namespace WPF_TestProgram01.Models
             set
             {
                 _crc_value = value;
-                OnPropertyChanged("crc_value");
+                base.OnPropertyChanged("crc_value");
             }
         }
 
@@ -119,18 +119,10 @@ namespace WPF_TestProgram01.Models
             set
             {
                 _etx_value = value;
-                OnPropertyChanged("etx_value");
+                base.OnPropertyChanged("etx_value");
             }
         }
 
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        protected void OnPropertyChanged(string propertyName) //실시간 업데이트
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
+        
     }
 }

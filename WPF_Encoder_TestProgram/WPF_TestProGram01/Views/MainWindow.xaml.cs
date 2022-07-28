@@ -25,5 +25,7 @@ namespace WPF_TestProgram01
 
             InitializeComponent();
         }
+
+        
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WPF_TestProgram01.Models
 {
-    public class ReadModel : INotifyPropertyChanged
+    public class ReadModel : Notify
     {
         public string tbx_send { get; set; } //TX textbox
         private string _tbx_receive;         //RX textbox
@@ -155,17 +155,6 @@ namespace WPF_TestProgram01.Models
             }
         }
 
-        public string stx2 { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string dtc2 { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        protected void OnPropertyChanged(string propertyName) //실시간 업데이트
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
+       
     }
 }

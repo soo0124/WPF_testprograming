@@ -80,7 +80,7 @@ namespace WPF_TestProgram01.ViewModels
 
 
 
-            btn_start = new Command(Execute_Start, CanExecute_Start);
+            //btn_start = new Command(Execute_Start, CanExecute_Start);
 
             btn_transmit = new Command(Execute_TX, CanExecute_TX);
 
@@ -250,6 +250,38 @@ namespace WPF_TestProgram01.ViewModels
             }
         }*/
 
+        public void btn_Connect_Click(object sender, RoutedEventArgs e)
+        {
+            if (!serialPort.IsOpen) //PORT Not Open?
+            {
+                serialPort.PortName = mainModel.Pick_comPort;
+                serialPort.BaudRate = mainModel.Pick_baudRate;
+                serialPort.DataBits = mainModel.Pick_dataBit;
+                serialPort.StopBits = (StopBits)mainModel.Pick_stopBit;
+
+                if (mainModel.Pick_parityBit == "NONE") serialPort.Parity = Parity.None;
+                else if (mainModel.Pick_parityBit == "SPACE") serialPort.Parity = Parity.Space;
+                else if (mainModel.Pick_parityBit == "EVEN") serialPort.Parity = Parity.Even;
+
+                serialPort.DataReceived += SerialPort_DataReceived;
+
+                serialPort.Open();
+
+                MessageBox.Show("Port Open");
+                mainModel.btn_start_name = "연결 해제!";
+                mainModel.btn_start_color = "Pink";
+            }
+            else
+            {
+                serialPort.Close();
+
+                MessageBox.Show("Port Close");
+                mainModel.btn_start_name = "연결 시작!";
+                mainModel.btn_start_color = "White";
+            }
+        }
+
+        /*
         private bool CanExecute_Start(object obj) { return true; }
         private void Execute_Start(object obj)
         {
@@ -281,6 +313,7 @@ namespace WPF_TestProgram01.ViewModels
                 mainModel.btn_start_color = "White";
             }
         }
+        */
 
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e) //Receive
         {
