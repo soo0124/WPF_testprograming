@@ -1,0 +1,43 @@
+﻿<Window x:Class="SamsungPLC_TestProgram.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SamsungPLC_TestProgram"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="850">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.ColumnSpan="2" Background="SkyBlue"/>
+        <Border Grid.RowSpan="2" Background="SkyBlue"/>
+
+        <Label Content="SAMSUNG PLC Aircon Test Program" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="Black" FontWeight="Bold" FontSize="20"  Margin="0,20,0,0"/>
+        <Label Content="COM Port" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontWeight="Bold" Foreground="Black" FontSize="12" Margin="0,0,125,13"/>
+        
+        <ComboBox Name="cb_COM" Grid.Row="0" Grid.Column="1" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="100" Height="20" Margin="485,80,0,0"/>
+
+        <Button x:Name="btn_Connect" Content="Connect" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Height="40" Margin="0,15,30,0" Background="White" Click="btn_Connect_Click"/>
+        <Button x:Name="btn_Status" Content="실내기 통신 가능(5회)" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="150" Height="25" Margin="0,40,0,0" Background="White" Click="btn_com_5status"/>
+        <Button x:Name="btn_Install_1" Content="#1 PLC보드 전송" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Width="150" Height="25" Margin="0,10,0,0" Background="White" Click="btn_PLCtoRCU1"/>
+        <Button x:Name="btn_Install_2" Content="#2 PLC보드 전송" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Width="150" Height="25" Margin="0,50,0,0" Background="White" Click="btn_PLCtoRCU2"/>
+        <Button x:Name="btn_Install_3" Content="#3 PLC보드 전송" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Width="150" Height="25" Margin="0,90,0,0" Background="White" Click="btn_PLCtoRCU3"/>
+        <Button x:Name="btn_Install_4" Content="#4 PLC보드 전송" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Width="150" Height="25" Margin="0,130,0,0" Background="White" Click="btn_PLCtoRCU4"/>
+        <Button x:Name="btn_Response1" Content="#1 실내기 제어응답" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Width="150" Height="25" Margin="0,170,0,0" Background="White" Click="btn_ResponseRCU1"/>
+        <Button x:Name="btn_Response2" Content="#2 실내기 제어응답" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Width="150" Height="25" Margin="0,210,0,0" Background="White" Click="btn_ResponseRCU2"/>
+        <Button x:Name="btn_Response3" Content="#3 실내기 제어응답" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Width="150" Height="25" Margin="0,250,0,0" Background="White" Click="btn_ResponseRCU3"/>
+        <Button x:Name="btn_Response4" Content="#4 실내기 제어응답" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Width="150" Height="25" Margin="0,290,0,0" Background="White" Click="btn_ResponseRCU4"/> 
+
+        <TextBlock x:Name="tbk_Console" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White" FontSize="13" />
+
+    </Grid>
+</Window>
