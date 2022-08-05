@@ -1,4 +1,5 @@
 ﻿//using EncoderTester.Network.Serial;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -79,7 +80,6 @@ namespace WPF_TestProgram01.ViewModels
                                   "racos5117");
 
 
-
             //btn_start = new Command(Execute_Start, CanExecute_Start);
 
             btn_transmit = new Command(Execute_TX, CanExecute_TX);
@@ -94,6 +94,7 @@ namespace WPF_TestProgram01.ViewModels
 
             btn_DBconn = new Command(Execute_DB, CanExecute_DB);
 
+            
             //btn_DB_start = new Command(Execute_StartDB, CanExecute_StartDB);
 
             //btn_DB_insert = new Command(Execute_InsertDB, CanExecute_InsertDB);
@@ -185,8 +186,6 @@ namespace WPF_TestProgram01.ViewModels
         private bool CanExecute_TX(object arg) { return true; } //CanExecute = Execute 코드 실행 여부 결정 (True: 호출, False: 호출X)
         private void Execute_TX(object obj) //DATA Transmit
         {
-
-
             try
             {
                 if (serialPort != null && serialPort.IsOpen)
@@ -223,10 +222,9 @@ namespace WPF_TestProgram01.ViewModels
             {
                 MessageBox.Show("Port is not open\n" + ex.ToString(), ex.Message);
             }
-
         }
 
-        /*
+        /* 
         private bool CanExecute_StartDB(object arg) { return true; }
         private void Execute_StartDB(object obj)
         {
