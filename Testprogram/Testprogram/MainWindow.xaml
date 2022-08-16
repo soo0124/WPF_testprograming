@@ -44,18 +44,23 @@
 
             <TabItem Header="중계기설정" Height="22" VerticalAlignment="Bottom" TabIndex="1">
                 <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="52*"/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="309*"/>
+                    </Grid.ColumnDefinitions>
 
-                    <Label Content="RCU 전체 개수 설정" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,70,0,0" FontSize="15"/>
+                    <Label Content="RCU 전체 개수 설정" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,70,0,0" FontSize="15" Grid.ColumnSpan="3"/>
                     <TextBox HorizontalAlignment="Left" Height="23" Margin="34,105,0,0" TextWrapping="Wrap" Text= "0" VerticalAlignment="Top" Width="120" Name="rcuAllCount"/>
-                    <Button Content="적용" HorizontalAlignment="Left" Margin="170,105,0,0" VerticalAlignment="Top" Width="75" Click="RCU_SET_Click" Background="Yellow"/>
+                    <Button Content="적용" HorizontalAlignment="Left" Margin="2,105,0,0" VerticalAlignment="Top" Width="75" Click="RCU_SET_Click" Background="Yellow" Grid.Column="2"/>
 
                     <TextBox HorizontalAlignment="Left" Height="23" Margin="34,219,0,0" TextWrapping="Wrap" Text= "1" VerticalAlignment="Top" Width="120" x:Name="dtcAllCount"/>
-                    <Label Content="DTC 전체 개수 설정" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,184,0,0" FontSize="15"/>
-                    <Button Content="적용" HorizontalAlignment="Left" Margin="170,219,0,0" VerticalAlignment="Top" Width="75" Click="DTC_SET_Click" Background="Yellow"/>
+                    <Label Content="DTC 전체 개수 설정" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,184,0,0" FontSize="15" Grid.ColumnSpan="3"/>
+                    <Button Content="적용" HorizontalAlignment="Left" Margin="2,219,0,0" VerticalAlignment="Top" Width="75" Click="DTC_SET_Click" Background="Yellow" Grid.Column="2"/>
 
-                    <Label Content="DTC 별 연동 개수 설정" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="364,88,0,0" FontSize="15"/>
+                    <Label Content="DTC 별 연동 개수 설정" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="196,88,0,0" FontSize="15" Grid.Column="2"/>
 
-                    <ListBox x:Name="ListDTC" Margin="364,119,146,59">
+                    <ListBox x:Name="ListDTC" Margin="196,119,146,59" Grid.Column="2">
 
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -73,7 +78,7 @@
                         </ListBox.ItemTemplate>
 
                     </ListBox>
-                    <Button Content="전 송" HorizontalAlignment="Left" Height="84" Margin="946,119,0,0" VerticalAlignment="Top" Width="102" FontSize="15" Click="DTC_ALL_Connect" Background="Yellow"/>
+                    <Button Content="전 송" HorizontalAlignment="Left" Height="84" Margin="778,119,0,0" VerticalAlignment="Top" Width="102" FontSize="15" Click="DTC_ALL_Connect" Background="Yellow" Grid.Column="2"/>
                 </Grid>
             </TabItem>
 

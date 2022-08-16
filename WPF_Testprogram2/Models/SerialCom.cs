@@ -7,7 +7,7 @@ namespace WPF_TestProgram01.Models
 {
     public class SerialCom
     {
-        public SerialPort serialPort = new SerialPort();
+        public SerialPort serialPort;
 
         public delegate void DataReceiveHandler(byte[] receiveData);
         public DataReceiveHandler EncoderDataReceiveHandler { get; set; }
@@ -30,6 +30,7 @@ namespace WPF_TestProgram01.Models
 
         public bool OpenCom(string portName, int baudrate, int databits, StopBits stopbits, Parity parity)
         {
+            serialPort = new SerialPort();
             try
             {
                 serialPort.PortName = portName;
@@ -87,6 +88,7 @@ namespace WPF_TestProgram01.Models
                 if (serialPort != null && serialPort.IsOpen)
                 {
                     serialPort.Write(sendData, 0, sendData.Length);
+                    Console.WriteLine(BitConverter.ToString(sendData));
                     return true;
                 }
             }
@@ -104,6 +106,7 @@ namespace WPF_TestProgram01.Models
                 if (serialPort != null && serialPort.IsOpen)
                 {
                     serialPort.Write(sendData, offset, count);
+                    Console.WriteLine(BitConverter.ToString(sendData));
                     return true;
                 }
             }

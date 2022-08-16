@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{C4FC398A-F1FB-4755-A41E-1F01B29F3B7F}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>WPF_Testprogram2</RootNamespace>
     <AssemblyName>WPF_Testprogram2</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -55,6 +58,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\CheckSum.cs" />
+    <Compile Include="Models\ConverterHelper.cs" />
+    <Compile Include="Models\Serial.cs" />
     <Compile Include="Models\SerialCom.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Page Include="Views\MainWindow.xaml">

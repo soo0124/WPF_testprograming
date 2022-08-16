@@ -12,6 +12,11 @@ namespace WPF_Testprogram2
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         protected bool OnPropertyChanged<T>(ref T property, T value, [CallerMemberName] string propertyName = "")
         {
             //입력된 값과 출력 값이 동일한 데이터 형식인경우

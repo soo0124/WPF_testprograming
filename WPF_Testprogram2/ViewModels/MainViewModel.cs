@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using WPF_TestProgram01.Models;
+using WPF_Testprogram2.Models;
 
 namespace WPF_Testprogram2.ViewModels
 {
     public class MainViewModel : Notify
     {
-        SerialCom serialCom = new SerialCom();
+        private SerialCom serialCom;
 
         private bool mIsConnect; //통신 연결상태 (Elipse)
         public bool IsConnect
@@ -20,8 +22,8 @@ namespace WPF_Testprogram2.ViewModels
             set => base.OnPropertyChanged(ref mIsConnect, value);
         }
 
-        private List<String> mPortLists = new List<string>(); //통신포트 리스트
-        public List<String> PortLists
+        private ObservableCollection<String> mPortLists = new ObservableCollection<string>(); //통신포트 리스트
+        public ObservableCollection<String> PortLists
         {
             get => mPortLists;
             set => base.OnPropertyChanged(ref mPortLists, value);
@@ -64,9 +66,9 @@ namespace WPF_Testprogram2.ViewModels
 
         public MainViewModel()
         {
-            string[] portList = SerialPort.GetPortNames();
-
-            foreach(string port in portList)
+            serialCom = new SerialCom();
+            
+            foreach (string port in SerialPort.GetPortNames())
             {
                 PortLists.Add(port);
             }
@@ -74,15 +76,26 @@ namespace WPF_Testprogram2.ViewModels
 
         public void BtnClick_PortRefresh(object sender, RoutedEventArgs e) //새로 고침
         {
-            
+            PortLists.Clear();
+
+            foreach (string port in SerialPort.GetPortNames())
+            {
+                PortLists.Add(port);
+            }
+            //base.OnPropertyChanged("PortLists");
         }
 
         public void BtnClick_PortOpen(object sender, RoutedEventArgs e)    //포트 개방
         {
-            if(!serialCom.IsOpen)
+            if(string.IsNullOrEmpty(SelectPort))
+            {
+                return;
+            }
+
+            if (!serialCom.IsOpen)
             {
                 IsConnect = true;
-                serialCom.OpenCom(SelectPort, 19200, 8, StopBits.One, Parity.None);
+                serialCom.OpenCom(this.SelectPort, 19200, 8, StopBits.One, Parity.None);
             }
             else
             {
@@ -95,7 +108,7 @@ namespace WPF_Testprogram2.ViewModels
         {
             if(serialCom != null && serialCom.IsOpen)
             {
-                serialCom.Send(ConvertHexStringToByte(SendData));
+                serialCom.Send(ConverterHelper.ConvertHexStringToByte(SendData));
             }
             else
             {
@@ -103,14 +116,35 @@ namespace WPF_Testprogram2.ViewModels
             }
         }
 
-        public static byte[] ConvertHexStringToByte(string convertString)  // HEX String -> Byte[] 
+        public void BtnClick_OnlineCheck(object sender, RoutedEventArgs e)
         {
-            byte[] convertArr = new byte[convertString.Length / 2];
-            for (int i = 0; i < convertArr.Length; i++)
+            if(IsConnect == false)
             {
-                convertArr[i] = Convert.ToByte(convertString.Substring(i * 2, 2), 16);
+                return;
             }
-            return convertArr;
+
+            byte[] packet = new byte[8];
+
+            packet[0] = 0x7B;
+            packet[1] = 0x00;
+            packet[2] = Convert.ToByte(this.EncoderNo);
+            packet[3] = Convert.ToByte(packet.Length);
+            packet[4] = 0xD9;
+            packet[5] = 0x01;
+            packet[6] = CheckSum.Create(packet);
+            packet[7] = 0x7D;
+
+            serialCom.Send(packet);
+        }
+
+        public void BtnClick_ReadCard(object sender, RoutedEventArgs e)
+        {
+            //숙제1
+        }
+
+        public void BtnClick_DeleteCard(object sender, RoutedEventArgs e)
+        {
+            //숙제2
         }
 
     }

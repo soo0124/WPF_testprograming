@@ -28,7 +28,7 @@
                             <Setter Property="Fill" Value="Red"/> <!-- Default -->
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding IsConnect}" Value="True">  <!-- isConnect가 데이터가 변경되었을때 -->
-                                    <Setter Property="Fill" Value="Blue"/>
+                                    <Setter Property="Fill" Value="Lime"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
@@ -91,7 +91,27 @@
             </Grid>
         </Border>
 
+        <Border Grid.Row="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
 
+                <Grid.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Height" Value="30"/>
+                    </Style>
+                </Grid.Resources>
+
+                <Button Grid.Column="0" Content="온라인 체크" Click="{local:MethodBinding BtnClick_OnlineCheck}"/>
+                <Button Grid.Column="2" Content="카드키 리드" Click="{local:MethodBinding BtnClick_ReadCard}"/>
+                <Button Grid.Column="4" Content="카드키 삭제" Click="{local:MethodBinding BtnClick_DeleteCard}"/>
+            </Grid>
+        </Border>
     </Grid>
 
 </Window>

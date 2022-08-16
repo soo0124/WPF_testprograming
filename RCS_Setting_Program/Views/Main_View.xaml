@@ -1,0 +1,37 @@
+﻿<Page x:Class="RCS_Setting_Program.Views.Main_View"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RCS_Setting_Program.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MDU_View">
+
+    <Grid>
+        <Label Margin="20,60,0,0" Width="90" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Content="DTC COUNT" Foreground="White"/>
+        <ComboBox SelectionChanged="{local:MethodBinding Changed_DTC}" ItemsSource="{Binding dtcCount}" SelectedItem="{Binding selectAllDTC}" Margin="110,60,0,0" Width="120" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" />
+
+        <Label Margin="20,120,0,0" Width="90" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Content="RCU COUNT" Foreground="White"/>
+        <TextBox Text="{Binding rcuAllCount}" Margin="110,120,0,0" Width="120" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+
+        <Label Margin="285,30,0,0" Width="90" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Content="DTC SETTING" Foreground="White"/>
+        <ListBox Margin="290,60,0,0" Width="290" Height="250" ItemsSource="{Binding dtcList}">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding name}" Width="70"/>
+                        <TextBox Text="{Binding rcuCount}" Width="70"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+    
+</Page>

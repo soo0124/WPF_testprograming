@@ -1,7 +1,7 @@
 ﻿WPF_Testprogram2
 
 
-winexe
+exe
 C#
 .cs
 C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_Testprogram2\obj\Debug\
@@ -12,9 +12,9 @@ DEBUG;TRACE
 C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_Testprogram2\App.xaml
 1-587587561
 
-101703474483
+13-2137280102
 13-1310406943
 Views\MainWindow.xaml;
 
-False
+True
 
