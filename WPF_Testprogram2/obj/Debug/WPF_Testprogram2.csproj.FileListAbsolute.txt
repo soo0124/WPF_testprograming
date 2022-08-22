@@ -15,3 +15,9 @@ C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_Testprogram2\obj\Debug\WPF_Test
 C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_Testprogram2\obj\Debug\Views\MainWindow.g.cs
 C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_Testprogram2\obj\Debug\Views\MainWindow.baml
 C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_Testprogram2\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_Testprogram2\obj\Debug\Views\V_GuestCard.baml
+C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_Testprogram2\obj\Debug\Views\V_StaffCard.baml
+C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_Testprogram2\obj\Debug\Views\V_SystemCard.baml
+C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_Testprogram2\obj\Debug\Views\V_GuestCard.g.cs
+C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_Testprogram2\obj\Debug\Views\V_StaffCard.g.cs
+C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_Testprogram2\obj\Debug\Views\V_SystemCard.g.cs

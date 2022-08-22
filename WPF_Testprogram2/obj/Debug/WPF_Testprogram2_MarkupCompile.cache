@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_Testprogram2\App.xaml
-1-587587561
+4-1281319261
 
-11-1667393027
+22-1249851600
 13-1310406943
-Views\MainWindow.xaml;
+Views\MainWindow.xaml;Views\V_GuestCard.xaml;Views\V_StaffCard.xaml;Views\V_SystemCard.xaml;
 
 False
 

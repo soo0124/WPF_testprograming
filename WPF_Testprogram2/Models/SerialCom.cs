@@ -1,13 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO.Ports;
+using System.Linq;
 using System.Threading;
 using System.Windows;
 
 namespace WPF_TestProgram01.Models
 {
+    public delegate void ByteReceiveHandler(byte[] packet);
+
     public class SerialCom
     {
         public SerialPort serialPort;
+        private List<byte> serialBuffer = new List<byte>();
+
+        public ByteReceiveHandler ByteReceive { get; set; }
+
 
         public delegate void DataReceiveHandler(byte[] receiveData);
         public DataReceiveHandler EncoderDataReceiveHandler { get; set; }
@@ -41,7 +49,9 @@ namespace WPF_TestProgram01.Models
                 serialPort.Encoding = new System.Text.ASCIIEncoding();
 
                 serialPort.ErrorReceived += serialPort_ErrorReceived;
-                serialPort.DataReceived += serialPort_DataReceived;
+                //serialPort.DataReceived += serialPort_DataReceived;
+
+                serialPort.DataReceived += DataReceived;
 
                 serialPort.Open();
 
@@ -150,6 +160,71 @@ namespace WPF_TestProgram01.Models
 
             return bytesBuffer;
             //return ReadBuffer;
+        }
+
+        private void DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            SerialPort receivedPort = sender as SerialPort;
+
+            if(receivedPort.BytesToRead > 0)
+            {
+                List<byte> bufferQue = serialBuffer;
+
+                while (receivedPort.BytesToRead > 0)
+                {
+                    byte b = (byte)receivedPort.ReadByte();
+                    bufferQue.Add(b);   
+                }
+
+                //STX, Length, ETX 검사
+                if (bufferQue.Count < 8) return;
+                
+                if (bufferQue.First() != 0x28)
+                {
+                    bufferQue.Clear();
+                    return;
+                }
+
+                switch (bufferQue[4])
+                {
+                    case 0xC8:
+                        if (bufferQue.Count < 68) return;
+                        break;
+
+                    case 0xC9 when bufferQue[5] == 0x01:
+                        if (bufferQue.Count < 65) return;
+                        break;
+
+                    case 0xC9 when bufferQue[5] == 0x02:
+                        if (bufferQue.Count < 28) return;
+                        break;
+
+                    case 0xCB:
+                        if (bufferQue.Count < 65) return;
+                        break;
+
+                    case 0xD9:
+                        if (bufferQue.Count < 9) return;
+                        break;
+
+                    default:
+                        bufferQue.Clear();
+                        return;
+                }
+
+                if(bufferQue.Last() != 0x29)
+                {
+                    bufferQue.Clear();
+                    return;
+                }
+
+
+
+                byte[] packet = bufferQue.ToArray();
+                bufferQue.Clear();
+
+                ByteReceive?.Invoke(packet);
+            }
         }
 
         private void serialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)

@@ -58,11 +58,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\CardKey\CardKeyType.cs" />
+    <Compile Include="Models\CardKey\CheckIn.cs" />
+    <Compile Include="Models\CardKey\FreeCheckIn.cs" />
+    <Compile Include="Models\CardKey\Hexhelper.cs" />
+    <Compile Include="Models\CardKey\ICardKey.cs" />
     <Compile Include="Models\CheckSum.cs" />
     <Compile Include="Models\ConverterHelper.cs" />
     <Compile Include="Models\Serial.cs" />
     <Compile Include="Models\SerialCom.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel1.cs" />
+    <Compile Include="ViewModels\VM_CardProperty.cs" />
+    <Compile Include="Views\V_GuestCard.xaml.cs">
+      <DependentUpon>V_GuestCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\V_StaffCard.xaml.cs">
+      <DependentUpon>V_StaffCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\V_SystemCard.xaml.cs">
+      <DependentUpon>V_SystemCard.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -75,6 +91,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\V_GuestCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\V_StaffCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\V_SystemCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Views\MethodBinding.cs" />

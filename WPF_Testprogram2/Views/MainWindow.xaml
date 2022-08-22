@@ -112,6 +112,39 @@
                 <Button Grid.Column="4" Content="카드키 삭제" Click="{local:MethodBinding BtnClick_DeleteCard}"/>
             </Grid>
         </Border>
+
+        <Border Grid.Row="3" Background="LightCyan">
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Button Grid.Column="0" Grid.Row="0" x:Name="guest" Content="게스트" Click="{local:MethodBinding BtnClick_ChangePage}"/>
+                <Button Grid.Column="0" Grid.Row="1" x:Name="staff" Content="스태프" Click="{local:MethodBinding BtnClick_ChangePage}"/>
+                <Button Grid.Column="0" Grid.Row="2" x:Name="system" Content="시스템" Click="{local:MethodBinding BtnClick_ChangePage}"/>
+                <Button Grid.Column="0" Grid.Row="3" x:Name="excel" Content="엑셀 벌크" Click="{local:MethodBinding BtnClick_ChangePage}"/>
+
+                <Frame Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                       Source="{Binding MainFrame}">
+                    <Frame.Template>
+                        <ControlTemplate TargetType="Frame">
+                            <ContentPresenter DataContext="{TemplateBinding DataContext}"/>
+                        </ControlTemplate>
+                    </Frame.Template>
+                </Frame>
+
+                <Button Grid.Column="1" Grid.Row="3" Content="카드키 발급" Click="{local:MethodBinding BtnClick_WriteCard}"/>
+            </Grid>
+        </Border>
     </Grid>
 
 </Window>

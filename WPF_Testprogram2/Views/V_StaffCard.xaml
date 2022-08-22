@@ -1,0 +1,284 @@
+﻿<Page x:Class="WPF_Testprogram2.Views.V_StaffCard"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="400" d:DesignWidth="700">
+    
+    <Grid>
+        <TabControl SelectedIndex="{Binding StaffCardSelectedIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <TabControl.Resources>
+                <Style TargetType="{x:Type TabItem}">
+                    <Setter Property="FontWeight" Value="SemiBold"/>
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="Width" Value="100"/>
+                    <Setter Property="Height" Value="26"/>
+                </Style>
+
+                <Style TargetType="{x:Type Label}">
+                    <Setter Property="FontWeight" Value="SemiBold"/>
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="Margin" Value="0,6"/>
+                </Style>
+
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Height" Value="28"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                    <Setter Property="Margin" Value="0,0,20,0"/>
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="FontWeight" Value="Regular"/>
+                </Style>
+            </TabControl.Resources>
+            
+            <TabItem Header="이머전시">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <Grid Margin="20,20,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Column="0" Grid.Row="0" Content="Hotel Code :"/>
+                        <Label Grid.Column="0" Grid.Row="1" Content="Security No. :"/>
+                        <Label Grid.Column="0" Grid.Row="2" Content="Special Area :"/>
+                    
+                        <Label Grid.Column="2" Grid.Row="0" Content="Staff No. :"/>
+
+                    
+                        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding TxtHotelCode}"/>
+                        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding TxtSecurityNo}"/>
+                        <TextBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" Text="{Binding TxtSpecialArea}"/>
+                    
+                        <TextBox Grid.Column="3" Grid.Row="0" Text="{Binding TxtStaffNo}"/>
+                    </Grid>                
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem Header="그랜드마스터">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <Grid Margin="20,20,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Column="0" Grid.Row="0" Content="Hotel Code :"/>
+                        <Label Grid.Column="0" Grid.Row="1" Content="Security No. :"/>
+                        <Label Grid.Column="0" Grid.Row="2" Content="Expire Date :"/>
+                        <Label Grid.Column="0" Grid.Row="4" Content="Special Area :"/>
+
+
+                        <Label Grid.Column="2" Grid.Row="0" Content="Staff No. :"/>
+                        <Label Grid.Column="2" Grid.Row="1" Content="Index No. :"/>
+                        <Label Grid.Column="2" Grid.Row="2" Content="Work Time :"/>
+
+
+                        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding TxtHotelCode}"/>
+                        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding TxtSecurityNo}"/>
+                        <Grid Grid.Column="1" Grid.Row="2" Margin="0,0,20,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Grid.Column="0" Margin="0,0,4,0" Text="{Binding TxtExpireDateYear}"/>
+                            <TextBox Grid.Column="1" Margin="0,0,4,0" Text="{Binding TxtExpireDateMonth}"/>
+                            <TextBox Grid.Column="2" Margin="0,0,0,0" Text="{Binding TxtExpireDateDay}"/>
+                        </Grid>                        
+                        <TextBox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" Text="{Binding TxtSpecialArea}"/>
+
+
+                        <TextBox Grid.Column="3" Grid.Row="0" Text="{Binding TxtStaffNo}"/>
+                        <TextBox Grid.Column="3" Grid.Row="1" Text="{Binding TxtIndexNo}"/>
+                        <TextBox Grid.Column="3" Grid.Row="2" Text="{Binding TxtWorkTime}"/>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem Header="마스터">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <Grid Margin="20,20,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Column="0" Grid.Row="0" Content="Hotel Code :"/>
+                        <Label Grid.Column="0" Grid.Row="1" Content="Security No. :"/>
+                        <Label Grid.Column="0" Grid.Row="2" Content="Expire Date :"/>
+                        <Label Grid.Column="0" Grid.Row="3" Content="Staff Area :"/>
+                        <Label Grid.Column="0" Grid.Row="4" Content="Special Area :"/>
+
+
+                        <Label Grid.Column="2" Grid.Row="0" Content="Staff No. :"/>
+                        <Label Grid.Column="2" Grid.Row="1" Content="Index No. :"/>
+                        <Label Grid.Column="2" Grid.Row="2" Content="Work Time :"/>
+
+
+                        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding TxtHotelCode}"/>
+                        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding TxtSecurityNo}"/>
+                        <Grid Grid.Column="1" Grid.Row="2" Margin="0,0,20,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Grid.Column="0" Margin="0,0,4,0" Text="{Binding TxtExpireDateYear}"/>
+                            <TextBox Grid.Column="1" Margin="0,0,4,0" Text="{Binding TxtExpireDateMonth}"/>
+                            <TextBox Grid.Column="2" Margin="0,0,0,0" Text="{Binding TxtExpireDateDay}"/>
+                        </Grid>
+                        <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding TxtStaffArea}"/>
+                        <TextBox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" Text="{Binding TxtSpecialArea}"/>
+
+
+                        <TextBox Grid.Column="3" Grid.Row="0" Text="{Binding TxtStaffNo}"/>
+                        <TextBox Grid.Column="3" Grid.Row="1" Text="{Binding TxtIndexNo}"/>
+                        <TextBox Grid.Column="3" Grid.Row="2" Text="{Binding TxtWorkTime}"/>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem Header="메이드">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <Grid Margin="20,20,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Column="0" Grid.Row="0" Content="Hotel Code :"/>
+                        <Label Grid.Column="0" Grid.Row="1" Content="Security No. :"/>
+                        <Label Grid.Column="0" Grid.Row="2" Content="Expire Date :"/>
+                        <Label Grid.Column="0" Grid.Row="3" Content="Staff Area :"/>
+                        <Label Grid.Column="0" Grid.Row="4" Content="Special Area :"/>
+
+
+                        <Label Grid.Column="2" Grid.Row="0" Content="Staff No. :"/>
+                        <Label Grid.Column="2" Grid.Row="1" Content="Index No. :"/>
+                        <Label Grid.Column="2" Grid.Row="2" Content="Work Time :"/>
+
+
+                        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding TxtHotelCode}"/>
+                        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding TxtSecurityNo}"/>
+                        <Grid Grid.Column="1" Grid.Row="2" Margin="0,0,20,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Grid.Column="0" Margin="0,0,4,0" Text="{Binding TxtExpireDateYear}"/>
+                            <TextBox Grid.Column="1" Margin="0,0,4,0" Text="{Binding TxtExpireDateMonth}"/>
+                            <TextBox Grid.Column="2" Margin="0,0,0,0" Text="{Binding TxtExpireDateDay}"/>
+                        </Grid>
+                        <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding TxtStaffArea}"/>
+                        <TextBox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" Text="{Binding TxtSpecialArea}"/>
+
+
+                        <TextBox Grid.Column="3" Grid.Row="0" Text="{Binding TxtStaffNo}"/>
+                        <TextBox Grid.Column="3" Grid.Row="1" Text="{Binding TxtIndexNo}"/>
+                        <TextBox Grid.Column="3" Grid.Row="2" Text="{Binding TxtWorkTime}"/>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            
+            <TabItem Header="미니바">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <Grid Margin="20,20,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Column="0" Grid.Row="0" Content="Hotel Code :"/>
+                        <Label Grid.Column="0" Grid.Row="1" Content="Security No. :"/>
+                        <Label Grid.Column="0" Grid.Row="2" Content="Expire Date :"/>
+                        <Label Grid.Column="0" Grid.Row="3" Content="Staff Area :"/>
+                        <Label Grid.Column="0" Grid.Row="4" Content="Special Area :"/>
+
+
+                        <Label Grid.Column="2" Grid.Row="0" Content="Staff No. :"/>
+                        <Label Grid.Column="2" Grid.Row="1" Content="Index No. :"/>
+                        <Label Grid.Column="2" Grid.Row="2" Content="Work Time :"/>
+
+
+                        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding TxtHotelCode}"/>
+                        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding TxtSecurityNo}"/>
+                        <Grid Grid.Column="1" Grid.Row="2" Margin="0,0,20,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Grid.Column="0" Margin="0,0,4,0" Text="{Binding TxtExpireDateYear}"/>
+                            <TextBox Grid.Column="1" Margin="0,0,4,0" Text="{Binding TxtExpireDateMonth}"/>
+                            <TextBox Grid.Column="2" Margin="0,0,0,0" Text="{Binding TxtExpireDateDay}"/>
+                        </Grid>
+                        <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding TxtStaffArea}"/>
+                        <TextBox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" Text="{Binding TxtSpecialArea}"/>
+
+
+                        <TextBox Grid.Column="3" Grid.Row="0" Text="{Binding TxtStaffNo}"/>
+                        <TextBox Grid.Column="3" Grid.Row="1" Text="{Binding TxtIndexNo}"/>
+                        <TextBox Grid.Column="3" Grid.Row="2" Text="{Binding TxtWorkTime}"/>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>          
+        </TabControl>
+    </Grid>
+</Page>

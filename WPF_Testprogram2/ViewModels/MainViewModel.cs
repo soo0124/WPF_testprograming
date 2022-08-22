@@ -11,7 +11,7 @@ using WPF_Testprogram2.Models;
 
 namespace WPF_Testprogram2.ViewModels
 {
-    public class MainViewModel : Notify
+    public partial class MainViewModel : Notify
     {
         private SerialCom serialCom;
 
@@ -64,6 +64,13 @@ namespace WPF_Testprogram2.ViewModels
             set => base.OnPropertyChanged(ref mEncoderNo, value);
         }
 
+        private Uri mMainFrame = new Uri("V_GuestCard.xaml", UriKind.Relative);
+        public Uri MainFrame
+        {
+            get => mMainFrame;
+            set => base.OnPropertyChanged(ref mMainFrame, value);
+        }
+
         public MainViewModel()
         {
             serialCom = new SerialCom();
@@ -72,6 +79,14 @@ namespace WPF_Testprogram2.ViewModels
             {
                 PortLists.Add(port);
             }
+
+            serialCom.ByteReceive += PortByteReceived;
+        }
+
+        private void PortByteReceived(byte[] packet)
+        {
+            Console.WriteLine($"수신 > {BitConverter.ToString(packet)}");
+            RcvPacket = BitConverter.ToString(packet);
         }
 
         public void BtnClick_PortRefresh(object sender, RoutedEventArgs e) //새로 고침
@@ -135,17 +150,171 @@ namespace WPF_Testprogram2.ViewModels
             packet[7] = 0x7D;
 
             serialCom.Send(packet);
+            SendPacket = BitConverter.ToString(packet);
         }
 
         public void BtnClick_ReadCard(object sender, RoutedEventArgs e)
         {
-            //숙제1
+            if (IsConnect == false)
+            {
+                return;
+            }
+
+            byte[] packet = new byte[28];
+
+            packet[0] = 0x7B;
+            packet[1] = 0x00;
+            packet[2] = Convert.ToByte(this.EncoderNo);
+            packet[3] = Convert.ToByte(packet.Length);
+            packet[4] = 0xC9;
+            packet[5] = 0x01;
+  
+            packet[26] = CheckSum.Create(packet);
+            packet[27] = 0x7D;
+
+            serialCom.Send(packet);
+            SendPacket = BitConverter.ToString(packet);
         }
 
         public void BtnClick_DeleteCard(object sender, RoutedEventArgs e)
         {
-            //숙제2
+            if (IsConnect == false)
+            {
+                return;
+            }
+
+            byte[] packet = new byte[60];
+
+            packet[0] = 0x7B;
+            packet[1] = 0x00;
+            packet[2] = Convert.ToByte(this.EncoderNo);
+            packet[3] = Convert.ToByte(packet.Length);
+            packet[4] = 0xC8;
+            packet[5] = 0x02;
+            
+            packet[58] = CheckSum.Create(packet);
+            packet[59] = 0x7D;
+
+            serialCom.Send(packet);
+            SendPacket = BitConverter.ToString(packet);
         }
 
+        public void BtnClick_ChangePage(object sender, RoutedEventArgs e) //페이지 전환버튼 클릭
+        {
+            try
+            {
+                //object 타입을 button 타입으로 강제 형변환
+                System.Windows.Controls.Button button = sender as System.Windows.Controls.Button;
+
+                switch (button.Name)
+                {
+                    case "guest":
+                        MainFrame = new Uri("V_GuestCard.xaml", UriKind.Relative);
+                        break;
+
+                    case "staff":
+                        MainFrame = new Uri("V_StaffCard.xaml", UriKind.Relative);
+                        break;
+
+                    case "system":
+                        MainFrame = new Uri("V_SystemCard.xaml", UriKind.Relative);
+                        break;
+
+                    //case "excel":
+                    //    mMainFrame = new Uri("V_Bulk.xaml", UriKind.Relative);
+                    //    break;
+
+                    default:
+                        break;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public void BtnClick_WriteCard(object sender, RoutedEventArgs e)
+        {
+            if(IsConnect == false)
+            {
+                MessageBox.Show("★엔코더 연결 필요★");
+                return;
+            }
+
+            //페이지(버튼) 선택에 따른 구분 
+            switch (MainFrame.OriginalString)
+            {
+                case "V_GuestCard.xaml":
+                    {
+                        switch (GuestCardSelectedIndex)
+                        {
+                            case 0: //체크인
+                                break;
+
+                            case 1: //프리체크인
+                                break;
+
+                            case 2: //스탠바이
+                                break;
+
+                            case 3: //원타임
+                                break;
+                        }
+                    }
+                    break;
+
+                case "V_StaffCard.xaml":
+                    {
+                        switch (GuestCardSelectedIndex)
+                        {
+                            case 0: //이머전시
+                                break;
+
+                            case 1: //그랜드마스터
+                                break;
+
+                            case 2: //마스터
+                                break;
+
+                            case 3: //메이드
+                                break;
+
+                            case 4: //미니바
+                                break;
+                        }
+                    }
+                    break;
+
+                case "V_SystemCard.xaml":
+                    {
+                        switch (GuestCardSelectedIndex)
+                        {
+                            case 0: //리셋
+                                break;
+
+                            case 1: //타임
+                                break;
+
+                            case 2: //이닛
+                                break;
+
+                            case 3: //파라미터
+                                break;
+
+                            case 4: //어드레스
+                                break;
+
+                            case 5: //HHT
+                                break;
+                        }
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+        }
     }
 }
