@@ -38,8 +38,13 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -58,18 +63,30 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\BulkItem.cs" />
     <Compile Include="Models\CardKey\CardKeyType.cs" />
     <Compile Include="Models\CardKey\CheckIn.cs" />
     <Compile Include="Models\CardKey\FreeCheckIn.cs" />
     <Compile Include="Models\CardKey\Hexhelper.cs" />
     <Compile Include="Models\CardKey\ICardKey.cs" />
+    <Compile Include="Models\CardKey\Parameter.cs" />
     <Compile Include="Models\CheckSum.cs" />
     <Compile Include="Models\ConverterHelper.cs" />
+    <Compile Include="Models\Encoder\C8_DeleteCard.cs" />
+    <Compile Include="Models\Encoder\C8_WriteCard.cs" />
+    <Compile Include="Models\Encoder\C9_ReadCard.cs" />
+    <Compile Include="Models\Encoder\D9_OnlineCheck.cs" />
+    <Compile Include="Models\Encoder\EncoderCommand.cs" />
+    <Compile Include="Models\Encoder\IEncoder.cs" />
+    <Compile Include="Models\ExcelHelper.cs" />
     <Compile Include="Models\Serial.cs" />
     <Compile Include="Models\SerialCom.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\MainViewModel1.cs" />
     <Compile Include="ViewModels\VM_CardProperty.cs" />
+    <Compile Include="ViewModels\VM_Excel.cs" />
+    <Compile Include="Views\V_Bulk.xaml.cs">
+      <DependentUpon>V_Bulk.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\V_GuestCard.xaml.cs">
       <DependentUpon>V_GuestCard.xaml</DependentUpon>
     </Compile>
@@ -91,6 +108,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\V_Bulk.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\V_GuestCard.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -124,10 +145,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Resources\Racos_CardKey FW_Test %28v1.9%29.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

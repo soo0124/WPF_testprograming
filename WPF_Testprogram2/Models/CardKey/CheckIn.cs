@@ -50,10 +50,10 @@ namespace WPF_Testprogram2.Models.CardKey
             packet[6] = Convert.ToByte(strSecurityNo.Substring(2, 2), 16);
 
             //체크아웃날짜
-            string strCheckoutDate = this.CheckoutDate.ToString("yymmdd");
-            packet[7] = Convert.ToByte(strCheckoutDate.Substring(0, 2), 16);
-            packet[8] = Convert.ToByte(strCheckoutDate.Substring(2, 2), 16);
-            packet[9] = Convert.ToByte(strCheckoutDate.Substring(4, 2), 16);
+            string strCheckoutDate = this.CheckoutDate.ToString("yyMMdd");
+            packet[7] = Convert.ToByte(strCheckoutDate.Substring(0, 2), 10);
+            packet[8] = Convert.ToByte(strCheckoutDate.Substring(2, 2), 10);
+            packet[9] = Convert.ToByte(strCheckoutDate.Substring(4, 2), 10);
 
             //인덱스 넘버
             packet[10] = Convert.ToByte(this.IndexNo);

@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using WPF_TestProgram01.Models;
 using WPF_Testprogram2.Models;
+using WPF_Testprogram2.Models.CardKey;
+using WPF_Testprogram2.Models.Encoder;
 
 namespace WPF_Testprogram2.ViewModels
 {
@@ -71,10 +73,12 @@ namespace WPF_Testprogram2.ViewModels
             set => base.OnPropertyChanged(ref mMainFrame, value);
         }
 
+        private ExcelHelper _Excel = new ExcelHelper();
+
         public MainViewModel()
         {
             serialCom = new SerialCom();
-            
+
             foreach (string port in SerialPort.GetPortNames())
             {
                 PortLists.Add(port);
@@ -102,7 +106,7 @@ namespace WPF_Testprogram2.ViewModels
 
         public void BtnClick_PortOpen(object sender, RoutedEventArgs e)    //포트 개방
         {
-            if(string.IsNullOrEmpty(SelectPort))
+            if (string.IsNullOrEmpty(SelectPort))
             {
                 return;
             }
@@ -121,7 +125,7 @@ namespace WPF_Testprogram2.ViewModels
 
         public void BtnClick_SendData(object sender, RoutedEventArgs e)    //데이터 전송
         {
-            if(serialCom != null && serialCom.IsOpen)
+            if (serialCom != null && serialCom.IsOpen)
             {
                 serialCom.Send(ConverterHelper.ConvertHexStringToByte(SendData));
             }
@@ -131,72 +135,45 @@ namespace WPF_Testprogram2.ViewModels
             }
         }
 
-        public void BtnClick_OnlineCheck(object sender, RoutedEventArgs e)
+        public void BtnClick_OnlineCheck()
         {
-            if(IsConnect == false)
-            {
-                return;
-            }
+            byte[] packet = new D9_OnlineCheck().ToByte(this.EncoderNo, null);
 
-            byte[] packet = new byte[8];
-
-            packet[0] = 0x7B;
-            packet[1] = 0x00;
-            packet[2] = Convert.ToByte(this.EncoderNo);
-            packet[3] = Convert.ToByte(packet.Length);
-            packet[4] = 0xD9;
-            packet[5] = 0x01;
-            packet[6] = CheckSum.Create(packet);
-            packet[7] = 0x7D;
-
-            serialCom.Send(packet);
-            SendPacket = BitConverter.ToString(packet);
+            EncoderSend(packet);
         }
 
-        public void BtnClick_ReadCard(object sender, RoutedEventArgs e)
+        public void BtnClick_ReadCard()
         {
-            if (IsConnect == false)
-            {
-                return;
-            }
+            byte[] packet = new C9_ReadCard().ToByte(this.EncoderNo, null);
 
-            byte[] packet = new byte[28];
-
-            packet[0] = 0x7B;
-            packet[1] = 0x00;
-            packet[2] = Convert.ToByte(this.EncoderNo);
-            packet[3] = Convert.ToByte(packet.Length);
-            packet[4] = 0xC9;
-            packet[5] = 0x01;
-  
-            packet[26] = CheckSum.Create(packet);
-            packet[27] = 0x7D;
-
-            serialCom.Send(packet);
-            SendPacket = BitConverter.ToString(packet);
+            EncoderSend(packet);
         }
 
-        public void BtnClick_DeleteCard(object sender, RoutedEventArgs e)
+        public void BtnClick_DeleteCard()
         {
-            if (IsConnect == false)
+            byte[] packet = new C8_DeleteCard().ToByte(this.EncoderNo, null);
+
+            EncoderSend(packet);
+        }
+
+        private bool EncoderSend(byte[] packet)
+        {
+            bool result = false;
+
+            try
             {
-                return;
+                SendData = BitConverter.ToString(packet, 0, packet.Length).Replace("-", "");
+                SendPacket = BitConverter.ToString(packet, 0, packet.Length).Replace("-", " ");
+
+                Console.WriteLine($"송신 > {BitConverter.ToString(packet, 0, packet.Length).Replace("-", " ")}");
+                serialCom.Send(packet);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
             }
 
-            byte[] packet = new byte[60];
-
-            packet[0] = 0x7B;
-            packet[1] = 0x00;
-            packet[2] = Convert.ToByte(this.EncoderNo);
-            packet[3] = Convert.ToByte(packet.Length);
-            packet[4] = 0xC8;
-            packet[5] = 0x02;
-            
-            packet[58] = CheckSum.Create(packet);
-            packet[59] = 0x7D;
-
-            serialCom.Send(packet);
-            SendPacket = BitConverter.ToString(packet);
+            return true;
         }
 
         public void BtnClick_ChangePage(object sender, RoutedEventArgs e) //페이지 전환버튼 클릭
@@ -220,9 +197,9 @@ namespace WPF_Testprogram2.ViewModels
                         MainFrame = new Uri("V_SystemCard.xaml", UriKind.Relative);
                         break;
 
-                    //case "excel":
-                    //    mMainFrame = new Uri("V_Bulk.xaml", UriKind.Relative);
-                    //    break;
+                    case "excel":
+                        MainFrame = new Uri("V_Bulk.xaml", UriKind.Relative);
+                        break;
 
                     default:
                         break;
@@ -237,23 +214,50 @@ namespace WPF_Testprogram2.ViewModels
 
         public void BtnClick_WriteCard(object sender, RoutedEventArgs e)
         {
-            if(IsConnect == false)
+            if (IsConnect == false)
             {
                 MessageBox.Show("★엔코더 연결 필요★");
                 return;
             }
 
+            string page = MainFrame.OriginalString;
+            ICardKey cardkey = null;
+
             //페이지(버튼) 선택에 따른 구분 
-            switch (MainFrame.OriginalString)
+            switch (page)
             {
                 case "V_GuestCard.xaml":
                     {
                         switch (GuestCardSelectedIndex)
                         {
                             case 0: //체크인
+                                cardkey = new CheckIn()
+                                {
+                                    HotelCode = this.TxtHotelCode,
+                                    ReaderNo = this.TxtReaderNo,
+                                    SecurityNo = this.TxtSecurityNo,
+                                    IndexNo = this.TxtIndexNo,
+                                    CheckoutDate = new DateTime(this.TxtCheckoutDateYear, this.TxtCheckoutDateMonth, this.TxtCheckoutDateDay),
+                                    CheckoutTime = this.TxtCheckoutTime,
+                                    SuitArea = this.TxtSetSuitArea,
+                                    SpecialArea = this.TxtSpecialArea
+                                };
+
                                 break;
 
                             case 1: //프리체크인
+                                cardkey = new FreeCheckIn()
+                                {
+                                    HotelCode = this.TxtHotelCode,
+                                    ReaderNo = this.TxtReaderNo,
+                                    SecurityNo = this.TxtSecurityNo,
+                                    IndexNo = this.TxtIndexNo,
+                                    CheckoutDate = new DateTime(this.TxtCheckoutDateYear, this.TxtCheckoutDateMonth, this.TxtCheckoutDateDay),
+                                    CheckinData = new DateTime(this.TxtCheckinDateYear, this.TxtCheckinDateMonth, this.TxtCheckinDateDay),
+                                    CheckoutTime = this.TxtCheckoutTime,
+                                    SuitArea = this.TxtSetSuitArea,
+                                    SpecialArea = this.TxtSpecialArea
+                                };
                                 break;
 
                             case 2: //스탠바이
@@ -315,6 +319,132 @@ namespace WPF_Testprogram2.ViewModels
                 default:
                     break;
             }
+
+            if (cardkey == null)
+            {
+                MessageBox.Show("카드 데이터 정보 오류", "카드 발급", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            byte[] packet = new C8_WriteCard().ToByte(this.EncoderNo, cardkey);
+
+            EncoderSend(packet);
+        }
+
+        public void BtnClick_LoadSourceFile(object sender, RoutedEventArgs e)
+        {
+            //파일찾기
+            try
+            {
+                System.Windows.Forms.OpenFileDialog of = new System.Windows.Forms.OpenFileDialog();
+                of.Filter = "Excel files (*.xlsx) | *.xlsx";
+                of.Multiselect = false;
+
+                if (of.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    TxtSourceExcelFile = of.FileName;
+                }
+            }
+            catch (Exception e2)
+            {
+
+                MessageBox.Show(e2.Message);
+            }
+        }
+
+        public void BtnClick_DefaultFile(object sender, RoutedEventArgs e)
+        {
+            //기본파일
+            try
+            {
+                TxtSourceExcelFile = "WPF_Testprogram2.Resources.Racos_CardKey FW_Test (v1.9).xlsx";
+            }
+            catch (Exception EX)
+            {
+
+                throw;
+            }
+        }
+
+        public void BtnClick_ExcelTest(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(TxtSourceExcelFile))
+            {
+                MessageBox.Show("테스트 파일을 선택하지 않았습니다");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(TxtDestinationExcelFile))
+            {
+                MessageBox.Show("저장경로를 선택하지 않았습니다");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(SelectExcelCommand))
+            {
+                MessageBox.Show("커맨드를 선택하지 않았습니다");
+                return;
+            }
+
+
+            Task.Run(() =>
+            {
+                //엑셀파일 열기
+                if (!_Excel.OpenExcelFile(TxtSourceExcelFile, TxtDestinationExcelFile, SelectExcelCommand))
+                {
+                    return;
+                }
+
+                //실행순서
+                var orderList = _Excel.GetExcelSheet();
+
+                if (orderList.Count < 1)
+                {
+                    MessageBox.Show("실행순서가 기입되지 않았습니다.");
+                    return;
+                }
+
+                try
+                {
+                    for (int i = 0; i < orderList.Count; i++)
+                    {
+                        this.RcvPacket = string.Empty;
+
+                        if (!EncoderSend(ConverterHelper.StringToByteArray(orderList[i].Input_Value)))
+                        {
+                            continue;
+                        }
+
+                        Task.Delay(ExcelTestTime).Wait();
+
+                        string receivedData = this.RcvPacket;
+
+                        if (string.IsNullOrEmpty(this.RcvPacket))
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            receivedData = "응답 없음";
+                            Console.WriteLine(string.Format("수신 > {0}", receivedData));
+                            Console.ForegroundColor = ConsoleColor.White;
+                        }
+
+                        _Excel.SetExcelSheet(orderList[i], receivedData);
+
+                    }
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+                finally
+                {
+                    _Excel.SaveExcelFile();
+                    _Excel.ExitExcelFile();
+
+                    MessageBox.Show("엑셀파일 저장 완료!");
+                }
+            });
+
+            Task.Delay(1000).Wait();
         }
     }
 }

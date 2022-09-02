@@ -98,9 +98,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\ConvertHelper.cs" />
     <Compile Include="Models\DTC_List.cs" />
     <Compile Include="Models\MyDB.cs" />
     <Compile Include="Models\Notify.cs" />
+    <Compile Include="Models\MatchItem.cs" />
+    <Compile Include="Models\Rcu_List.cs" />
+    <Compile Include="Models\Relay.cs" />
     <Compile Include="Models\SerialCom.cs" />
     <Compile Include="Views\Main_View.xaml.cs">
       <DependentUpon>Main_View.xaml</DependentUpon>

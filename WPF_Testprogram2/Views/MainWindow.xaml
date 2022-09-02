@@ -143,6 +143,7 @@
                 </Frame>
 
                 <Button Grid.Column="1" Grid.Row="3" Content="카드키 발급" Click="{local:MethodBinding BtnClick_WriteCard}"/>
+                <Button Grid.Column="1" Grid.Row="3" Content="엑셀 테스트" Click="{local:MethodBinding BtnClick_ExcelTest}"/>
             </Grid>
         </Border>
     </Grid>

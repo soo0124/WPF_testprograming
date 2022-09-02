@@ -1,0 +1,17 @@
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Excel_Bulk\bin\Debug\Excel_Bulk.exe.config
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Excel_Bulk\bin\Debug\Excel_Bulk.exe
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Excel_Bulk\bin\Debug\Excel_Bulk.pdb
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Excel_Bulk\obj\Debug\Excel_Bulk.csproj.AssemblyReference.cache
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Excel_Bulk\obj\Debug\Excel_Bulk.csproj.SuggestedBindingRedirects.cache
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Excel_Bulk\obj\Debug\MainWindow.g.cs
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Excel_Bulk\obj\Debug\App.g.cs
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Excel_Bulk\obj\Debug\Excel_Bulk_MarkupCompile.cache
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Excel_Bulk\obj\Debug\Excel_Bulk_MarkupCompile.lref
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Excel_Bulk\obj\Debug\MainWindow.baml
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Excel_Bulk\obj\Debug\Excel_Bulk.g.resources
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Excel_Bulk\obj\Debug\Excel_Bulk.Properties.Resources.resources
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Excel_Bulk\obj\Debug\Excel_Bulk.csproj.GenerateResource.cache
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Excel_Bulk\obj\Debug\Excel_Bulk.csproj.CoreCompileInputs.cache
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Excel_Bulk\obj\Debug\Excel_Bulk.exe
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Excel_Bulk\obj\Debug\Excel_Bulk.pdb
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Excel_Bulk\bin\Debug\Resources\testfile.txt

@@ -5,18 +5,30 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:RCS_Setting_Program.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="MDU_View">
+      Title="Main_View"  >
 
     <Grid>
-        <Label Margin="20,60,0,0" Width="90" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Content="DTC COUNT" Foreground="White"/>
-        <ComboBox SelectionChanged="{local:MethodBinding Changed_DTC}" ItemsSource="{Binding dtcCount}" SelectedItem="{Binding selectAllDTC}" Margin="110,60,0,0" Width="120" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
 
-        <Label Margin="20,120,0,0" Width="90" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Content="RCU COUNT" Foreground="White"/>
-        <TextBox Text="{Binding rcuAllCount}" Margin="110,120,0,0" Width="120" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <Grid.RowDefinitions>
+            <RowDefinition />            
+        </Grid.RowDefinitions>
 
-        <Label Margin="285,30,0,0" Width="90" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Content="DTC SETTING" Foreground="White"/>
-        <ListBox Margin="290,60,0,0" Width="290" Height="250" ItemsSource="{Binding dtcList}">
+        <Label Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Margin="55,100,0,0" Width="110" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Content="DTC COUNT" Foreground="White" FontWeight="Bold" FontSize="15"/>
+        <ComboBox Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" SelectionChanged="{local:MethodBinding Changed_DTC}" ItemsSource="{Binding dtcCount}" SelectedItem="{Binding selectAllDTC}" Margin="180,103,0,0" Width="120" Height="25"  VerticalAlignment="Top" HorizontalAlignment="Left" />
+
+        <Label Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Margin="55,210,0,0" Width="110" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Content="RCU COUNT" Foreground="White" FontWeight="Bold" FontSize="15"/>
+        <TextBox Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Text="{Binding rcuAllCount}" Margin="180,213,0,0" Width="120" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+
+        <Label Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Margin="55,320,0,0" Width="110" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Content="COM SPEED" Foreground="White" FontWeight="Bold" FontSize="15"/>
+        <TextBox Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Text="{Binding commSpeed}" Margin="180,323,0,0" Width="120" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+
+
+        <Label Grid.Column="1" Grid.Row="0" Margin="10,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Content="DTC SETTING" Foreground="White" FontWeight="Bold" FontSize="15"/>
+        <ListBox Grid.Column="1" Grid.Row="0" Margin="10,65,5,5" ItemsSource="{Binding dtcList}">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Vertical"/>
@@ -26,12 +38,13 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding name}" Width="70"/>
-                        <TextBox Text="{Binding rcuCount}" Width="70"/>
+                        <TextBlock Text="{Binding name}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="60" FontWeight="Bold" FontSize="15"/>
+                        <TextBox Text="{Binding rcuCount}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Height="25" Margin="20,0,0,0"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+
     </Grid>
     
 </Page>

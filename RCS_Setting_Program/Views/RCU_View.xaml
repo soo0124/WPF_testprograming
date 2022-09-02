@@ -3,13 +3,78 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:RCS_Setting_Program.Views"
+      xmlns:local="clr-namespace:RCS_Setting_Program.Views" xmlns:viewmodels="clr-namespace:RCS_Setting_Program.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:Main_ViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="RCU_View">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Label VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,10,0,0" Width="90" Height="35" Content="객실타입 :" FontWeight="Bold" FontSize="15">
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="White"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding selectCbMode}" Value="0">
+                            <Setter Property="Foreground" Value="Red"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+        <ComboBox VerticalAlignment="Top" HorizontalAlignment="Left" Margin="85,12,0,0" Width="120" Height="25" FontWeight="Bold" ItemsSource="{Binding cbMode}" SelectedItem="{Binding selectCbMode}" Background="White"/>
+
+        <Label VerticalAlignment="Top" HorizontalAlignment="Left" Margin="270,10,0,0" Width="90" Height="35" Content="A접점 :" FontWeight="Bold" FontSize="15" Foreground="White" />
+        <ComboBox VerticalAlignment="Top" HorizontalAlignment="Left" Margin="340,12,0,0" Width="120" Height="25" FontWeight="Bold" ItemsSource="{Binding relayAList}" SelectedItem="{Binding relayASelect}" Background="White"/>
+
+        <Label VerticalAlignment="Top" HorizontalAlignment="Left" Margin="510,10,0,0" Width="90" Height="35" Content="B접점 :" FontWeight="Bold" FontSize="15" Foreground="White" />
+        <ComboBox VerticalAlignment="Top" HorizontalAlignment="Left" Margin="580,12,0,0" Width="120" Height="25" FontWeight="Bold" ItemsSource="{Binding relayBList}" SelectedItem="{Binding relayBSelect}" Background="White"/>
+
+
+        <ListBox Grid.Row="0" Grid.Column="0" Margin="0,50,0,0" ItemsSource="{Binding rcuLists}" Background="Black">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical" Width="185">
+
+                        <TextBlock Text="{Binding lightIndex, StringFormat={}{0}번 전등스위치}" VerticalAlignment="Center" FontWeight="Bold" Foreground="Orange"/>
+                        <ComboBox Margin="5,8,0,0" ItemsSource="{Binding lightNum}" SelectedItem="{Binding selectNum}" />
+                        <CheckBox Margin="5,8,0,0" Content="마스터 유무" IsChecked="{Binding masterUse}" Foreground="White"/>
+                        <CheckBox Margin="5,8,0,0" Content="화장실 전용" IsChecked="{Binding bathUse}" Foreground="White"/>
+                        
+                        <ListBox ItemsSource="{Binding relayLists}" Margin="0,10,0,0">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox Width="100" Content="{Binding relayNo}" ContentStringFormat="{}{0}번 릴레이" IsChecked="{Binding IsChecked}"/>
+                                        <ComboBox Width="80" ItemsSource="{Binding circuitNo}" SelectedItem="{Binding selectCircuitNo}" DisplayMemberPath="Display" SelectedValuePath="Value">
+                                            <ComboBox.Style>
+                                                <Style TargetType="{x:Type ComboBox}">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsChecked}" Value="False">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </ComboBox.Style>
+                                        </ComboBox>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
     </Grid>
     
 </Page>

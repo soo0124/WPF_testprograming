@@ -11,5 +11,4 @@ namespace WPF_Testprogram2.Models
         byte[] ToPacket();
     }
 
-    
 }

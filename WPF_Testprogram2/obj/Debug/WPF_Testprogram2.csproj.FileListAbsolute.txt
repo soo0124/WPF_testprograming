@@ -21,3 +21,5 @@ C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_Testprogram2\obj\Debug\Views\V_
 C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_Testprogram2\obj\Debug\Views\V_GuestCard.g.cs
 C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_Testprogram2\obj\Debug\Views\V_StaffCard.g.cs
 C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_Testprogram2\obj\Debug\Views\V_SystemCard.g.cs
+C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_Testprogram2\obj\Debug\Views\V_Bulk.g.cs
+C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_Testprogram2\obj\Debug\Views\V_Bulk.baml

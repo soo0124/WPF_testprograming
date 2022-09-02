@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RCS_Setting_Program.Views"
         xmlns:vm="clr-namespace:RCS_Setting_Program.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Width="1600" Height="800">
 
     <Window.DataContext>
         <vm:Main_ViewModel/>
@@ -22,8 +22,8 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="8*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
 
         <Border Background="Black" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"/>
@@ -31,9 +31,9 @@
         <Border Background="Black" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
 
         <!-- 1번째 행 -->
-        <Label Width="180" Height="40" Margin="15,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="F.W Setting Program" FontWeight="Bold" Foreground="White" FontSize="16"/>
+        <Label HorizontalAlignment="Left" VerticalAlignment="Center" Margin="130,0,0,0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="- RCS Firmware Setting Program -" FontWeight="Bold" Foreground="PowderBlue" FontSize="30"/>
 
-        <Ellipse Width="35" Height="35" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2">
+        <Ellipse Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2">
             <Ellipse.Style>
                 <Style TargetType="Ellipse">
                     <Setter Property="Fill" Value="Red"/>
@@ -46,10 +46,22 @@
             </Ellipse.Style>
         </Ellipse>
 
-        <Label Width="75" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="75,0,0,0" Grid.Row="0" Grid.Column="1" Foreground="White" FontWeight="Bold" Content="COM PORT"/>
-        <ComboBox ItemsSource="{Binding portLists}" SelectedItem="{Binding selectPort}" Width="120" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="150,0,0,0" Grid.Row="0" Grid.Column="1" />
+        <Button Click="{local:MethodBinding Click_Refresh}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,240,0" Grid.Row="0" Grid.Column="1" Width="30" Height="30" Content="√" Foreground="Blue" Background="White" FontWeight="Bold" FontSize="17"/>
+        <Label HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,410,0" Grid.Row="0" Grid.Column="1" FontWeight="Bold" Content="COM PORT" FontSize="18">
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="Red"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding btnConnect}" Value="true">
+                            <Setter Property="Foreground" Value="White"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+        <ComboBox ItemsSource="{Binding portLists}" SelectedItem="{Binding selectPort}" Width="120" Height="30" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,280,0" Grid.Row="0" Grid.Column="1" Background="White"/>
 
-        <Button Click="{local:MethodBinding Click_Connection}" Width="150" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="350,0,0,0" Grid.Row="0" Grid.Column="1" FontWeight="Bold" Background="White">
+        <Button Click="{local:MethodBinding Click_Connection}" Width="165" Height="33" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,60,0" Grid.Row="0" Grid.Column="1" FontWeight="Bold" FontSize="16" Background="White">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Content" Value="CONNECTION"/>
@@ -66,13 +78,11 @@
         
         
         <!-- 2번째 행 -->
-        <Button Margin="0,20,0,0" Width="110" Height="40" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" Background="White" Content="MDU Setting" FontWeight="Bold"/>
-        <Button Margin="0,80,0,0" Width="110" Height="40" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" Background="White" Content="DTC Setting" FontWeight="Bold"/>
-        <Button Margin="0,140,0,0" Width="110" Height="40" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" Background="White" Content="RCU Setting" FontWeight="Bold"/>
-        <Button Margin="0,200,0,0" Width="110" Height="40" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" Background="White" Content="Relay Setting" FontWeight="Bold"/>
-        <Button Margin="0,260,0,0" Width="110" Height="40" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" Background="White" Content="Preferences" FontWeight="Bold"/>
+        <Button x:Name="Main_View" Click="{local:MethodBinding ChangePage}" Height="50" Margin="30,30,40,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" Background="White" Content="MAIN Setting" FontWeight="Bold" FontSize="16"/>
+        <Button x:Name="RCU_View" Click="{local:MethodBinding ChangePage}" Height="50" Margin="30,110,40,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" Background="White" Content="RCU Setting" FontWeight="Bold" FontSize="16"/>
+        <Button x:Name="Option_View" Click="{local:MethodBinding ChangePage}" Height="50" Margin="30,190,40,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" Background="White" Content="OPTION" FontWeight="Bold" FontSize="16"/>
 
-        <Frame Source="{Binding frameSource}" Grid.Row="1" Grid.Column="1" NavigationUIVisibility="Hidden">
+        <Frame Source="{Binding frameSource}" Margin="0,0,0,20" Grid.Row="1" Grid.Column="1" NavigationUIVisibility="Hidden">
             <Frame.Template>
                 <ControlTemplate TargetType="Frame">
                     <ContentPresenter DataContext="{TemplateBinding DataContext}"/>
@@ -80,7 +90,7 @@
             </Frame.Template>
         </Frame>
 
-        <Button Click="{local:MethodBinding Click_TX_MduDtc}" Width="50" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="2" Background="Yellow" Content="전송" FontWeight="Bold">
+        <Button Click="{local:MethodBinding Click_Trasmit}" Margin="10,10,10,10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Row="3" Grid.Column="2" Background="Yellow" Content="전송" FontSize="20" FontWeight="Bold">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="10"/>
@@ -88,8 +98,46 @@
             </Button.Resources>
         </Button>
 
+        <Button Click="{local:MethodBinding LS_ADD}" Background="LightGreen" Content="추가" Width="80" Height="60" Grid.Row="1" Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,50,0,0" FontWeight="Bold" FontSize="15">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding frameSource}" Value="/Views/RCU_View.xaml">
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button Click="{local:MethodBinding LS_Delete}" Background="LightSalmon" Content="삭제" Width="80" Height="60" Grid.Row="1" Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,120,0,0" FontWeight="Bold" FontSize="15">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding frameSource}" Value="/Views/RCU_View.xaml">
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+
         <!-- 3번째 행 -->
         <TextBlock Margin="20,0,0,0" Width="100" Height="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Text="장수현" Foreground="White"/>
-
+        <ScrollViewer Grid.Column="1" Grid.Row="2" Margin="0,0,0,10">
+            <TextBox TextWrapping="Wrap" Background="Black" Foreground="Yellow" Text="{Binding txLogPacket}" FontSize="16" FontWeight="Bold"/>
+        </ScrollViewer>
     </Grid>
 </Window>
