@@ -50,12 +50,12 @@ namespace RCS_Setting_Program.Models
             }
             catch (InvalidOperationException e1)
             {
-                MessageBox.Show($"Model/SerialCom 62번\n{portName} is already opened.", e1.Message);
+                MessageBox.Show($"Model/SerialCom 53번\n{portName} is already opened.", e1.Message);
                 return true;
             }
             catch (UnauthorizedAccessException e2)
             {
-                MessageBox.Show($"Model/SerialCom 67번\nOther application is using {portName}.", e2.Message);
+                MessageBox.Show($"Model/SerialCom 58번\nOther application is using {portName}.", e2.Message);
                 return false;
             }
         }
@@ -76,7 +76,7 @@ namespace RCS_Setting_Program.Models
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Model/SerialCom 88번\n" + ex.ToString(), ex.Message);
+                MessageBox.Show("Model/SerialCom 79번\n" + ex.ToString(), ex.Message);
             }
         }
 
@@ -92,7 +92,7 @@ namespace RCS_Setting_Program.Models
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Model/SerialCom 105번\n" + ex.ToString(), ex.Message);
+                MessageBox.Show("Model/SerialCom 95번\n" + ex.ToString(), ex.Message);
             }
             return false;
         }
@@ -109,7 +109,7 @@ namespace RCS_Setting_Program.Models
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Model/SerialCom 105번\n" + ex.ToString(), ex.Message);
+                MessageBox.Show("Model/SerialCom 112번\n" + ex.ToString(), ex.Message);
             }
             return false;
         }
@@ -126,7 +126,7 @@ namespace RCS_Setting_Program.Models
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Model/SerialCom 123번\n" + ex.ToString(), ex.Message);
+                MessageBox.Show("Model/SerialCom 129번\n" + ex.ToString(), ex.Message);
             }
             return false;
         }
@@ -155,7 +155,7 @@ namespace RCS_Setting_Program.Models
                 }
                 catch (TimeoutException ex)
                 {
-                    MessageBox.Show("Model/SerialCom 146번\n" + ex.ToString(), ex.Message);
+                    MessageBox.Show("Model/SerialCom 158번\n" + ex.ToString(), ex.Message);
                 }
             }
 
@@ -179,13 +179,13 @@ namespace RCS_Setting_Program.Models
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Model/SerialCom 167번\n" + ex.ToString(), ex.Message);
+                MessageBox.Show("Model/SerialCom 182번\n" + ex.ToString(), ex.Message);
             }
         }
 
         private void serialPort_ErrorReceived(object sender, SerialErrorReceivedEventArgs e)
         {
-            MessageBox.Show("Model/SerialCom 173번\n" + e.ToString());
+            MessageBox.Show("Model/SerialCom 188번\n" + e.ToString());
         }
 
         private void StartCheckSerialOpenThread()
@@ -222,7 +222,7 @@ namespace RCS_Setting_Program.Models
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Model/SerialCom 211번\n" + ex.ToString(), ex.Message);
+                    MessageBox.Show("Model/SerialCom 225번\n" + ex.ToString(), ex.Message);
                 }
             }
         }

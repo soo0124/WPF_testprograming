@@ -36,7 +36,7 @@ namespace RCS_Setting_Program.Models
         public static string ConvertStringToHexString(string convertString)
         {
             byte[] bytes = Encoding.Default.GetBytes(convertString);
-            string convertHexString = BitConverter.ToString(bytes);
+            string convertHexString = BitConverter.ToString(bytes).Replace("-", " ");
 
             return convertHexString;
         }

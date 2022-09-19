@@ -274,6 +274,22 @@ namespace RCS_Setting_Program.ViewModels
             set => base.OnPropertyChanged(ref _txLogPacket, value);
         }
 
+        //Year, Month, Day, Time
+        private string _realTime;
+        public string realTime
+        {
+            get => _realTime;
+            set => base.OnPropertyChanged(ref _realTime, value);
+        }
+
+        //Protocol
+        private string _protocol = "STX | DATA TYPE | CMD | DTC COUNT | RCU COUNT | DTC N COUNT | ETX";
+        public string protocol
+        {
+            get => _protocol;
+            set => base.OnPropertyChanged(ref _protocol, value);
+        }
+
         private int pageNum = 1;
 
         public Main_ViewModel()
@@ -286,10 +302,25 @@ namespace RCS_Setting_Program.ViewModels
         //initiallizing
         public void Init()
         {
+            onTimeMethod();
+
             foreach(string port in SerialPort.GetPortNames())
             {
                 portLists.Add(port);
             }
+        }
+        
+        //Real Time
+        public void onTimeMethod()
+        {
+            System.Timers.Timer timer = new System.Timers.Timer();
+            timer.Interval = 1000;
+            timer.Elapsed += (sender, e) =>
+            {
+                this.realTime = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss}";
+            };
+
+            timer.Start();
         }
 
         //Comport Refresh
@@ -312,8 +343,16 @@ namespace RCS_Setting_Program.ViewModels
 
             switch(btn.Name)
             {
-                case "Main_View": pageNum = 1; break;
-                case "RCU_View": pageNum = 2; LS_ADD(); break;
+                case "Main_View": 
+                    pageNum = 1;
+                    protocol = "STX | DATA TYPE | CMD | DTC COUNT | RCU COUNT | DTC N COUNT | ETX";
+                    break;
+
+                case "RCU_View": 
+                    pageNum = 2; 
+                    LS_ADD(); 
+                    protocol = "STX | DATA TYPE | CMD | ROOM TYPE | L/S COUNT | BUTTON COUNT | MASTER USE | BATH USE | RELAY COUNT | RELAY NAME | RELAY CIRCUIT | ETX";
+                    break;
                 case "Option_View": pageNum = 3; break;
             }
         }
@@ -349,7 +388,7 @@ namespace RCS_Setting_Program.ViewModels
         public void Click_Trasmit(object sender, RoutedEventArgs e)
         {
             List<string> strPacket = new List<string>();
-            txLogPacket = " 송신: ";
+            
             strPacket.Add(Constants.STX);
 
             for (int i = 0; i < 4; i++)
@@ -378,6 +417,8 @@ namespace RCS_Setting_Program.ViewModels
                 break;
 
                 case 2: //RCU TX Packet
+                    
+  
                     strPacket.Add(Constants.CMD_RCU);
                     strPacket.Add(Convert.ToString(selectCbMode));
                     strPacket.Add(rcuLists.Count.ToString());
@@ -385,13 +426,21 @@ namespace RCS_Setting_Program.ViewModels
                     for (int i = 1; i < rcuLists.Count+1; i++) //추가한 라이트스위치 개수만큼 for문실행
                     {
                         Rcu_List RCU = rcuLists[i-1]; //라이트스위치 객체 하나
+                        int relayCount = 0;
 
-                        strPacket.Add(i.ToString());
                         strPacket.Add(RCU.selectNum.ToString());
                         strPacket.Add(Convert.ToInt32(RCU.masterUse).ToString());
                         strPacket.Add(Convert.ToInt32(RCU.bathUse).ToString());
 
-                        //Relay RELAY = RCU.relayLists[i-1];
+                        for (int n = 0; n < 32; n++) //체크된 릴레이 총개수
+                        {
+                            if (RCU.relayLists[n].IsChecked == true)
+                            {
+                                relayCount += 1;
+                            }
+                        }
+
+                        strPacket.Add(relayCount.ToString("D2"));
 
                         for (int k = 0; k < 32; k++) //릴레이 no, circuit
                         {

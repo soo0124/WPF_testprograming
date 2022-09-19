@@ -1,0 +1,32 @@
+﻿<Window x:Class="WPF_Basic.SubWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Basic"
+        mc:Ignorable="d"
+        Title="SubWindow" MinWidth="300" Height="Auto" Width="Auto" MaxHeight="600" MaxWidth="800">
+    <Grid Margin="20,20,20,30">
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="80"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" x:Name="Txt_Msg" />
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" x:Name="BtnYes" Content="Yes" Click="Btn_YES"/>
+            <Button Grid.Column="2" x:Name="BtnNo" Content="No" Click="Btn_NO"/>
+            <Button Grid.Column="4" x:Name="BtnCancle" Content="Cancle" Click="Btn_Cancle"/>
+        </Grid>
+        
+    </Grid>
+</Window>

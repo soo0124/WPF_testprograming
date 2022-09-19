@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RCS_Setting_Program.Views"
         xmlns:vm="clr-namespace:RCS_Setting_Program.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Width="1600" Height="800">
+        Title="MainWindow" Width="1600" Height="800" MinHeight="600" MinWidth="1200" >
 
     <Window.DataContext>
         <vm:Main_ViewModel/>
@@ -82,7 +82,7 @@
         <Button x:Name="RCU_View" Click="{local:MethodBinding ChangePage}" Height="50" Margin="30,110,40,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" Background="White" Content="RCU Setting" FontWeight="Bold" FontSize="16"/>
         <Button x:Name="Option_View" Click="{local:MethodBinding ChangePage}" Height="50" Margin="30,190,40,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" Background="White" Content="OPTION" FontWeight="Bold" FontSize="16"/>
 
-        <Frame Source="{Binding frameSource}" Margin="0,0,0,20" Grid.Row="1" Grid.Column="1" NavigationUIVisibility="Hidden">
+        <Frame Source="{Binding frameSource}" Margin="0,0,0,10" Grid.Row="1" Grid.Column="1" NavigationUIVisibility="Hidden">
             <Frame.Template>
                 <ControlTemplate TargetType="Frame">
                     <ContentPresenter DataContext="{TemplateBinding DataContext}"/>
@@ -135,8 +135,9 @@
 
 
         <!-- 3번째 행 -->
-        <TextBlock Margin="20,0,0,0" Width="100" Height="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Text="장수현" Foreground="White"/>
-        <ScrollViewer Grid.Column="1" Grid.Row="2" Margin="0,0,0,10">
+        <TextBlock Margin="20,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding realTime}" Foreground="White" FontSize="15"/>
+        <TextBlock Grid.Column="1" Grid.Row="2" Margin="35,0,0,0" Background="Black" Foreground="Red" Text="{Binding protocol}" FontSize="15" FontWeight="Bold"/>
+        <ScrollViewer Grid.Column="1" Grid.Row="2" Margin="0,20,0,15">
             <TextBox TextWrapping="Wrap" Background="Black" Foreground="Yellow" Text="{Binding txLogPacket}" FontSize="16" FontWeight="Bold"/>
         </ScrollViewer>
     </Grid>
