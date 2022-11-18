@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32602.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_TCP Server", "WPF_TCP Server.csproj", "{B6056BF4-4D7A-422F-8422-C6C945FB668D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B6056BF4-4D7A-422F-8422-C6C945FB668D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6056BF4-4D7A-422F-8422-C6C945FB668D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6056BF4-4D7A-422F-8422-C6C945FB668D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6056BF4-4D7A-422F-8422-C6C945FB668D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EEA87B69-36FE-498B-895D-0E7EDBFADEBA}
+	EndGlobalSection
+EndGlobal

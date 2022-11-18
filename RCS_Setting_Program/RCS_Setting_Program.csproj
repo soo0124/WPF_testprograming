@@ -113,6 +113,9 @@
     <Compile Include="Views\RCU_View.xaml.cs">
       <DependentUpon>RCU_View.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Relay_View.xaml.cs">
+      <DependentUpon>Relay_View.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -131,6 +134,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RCU_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Relay_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

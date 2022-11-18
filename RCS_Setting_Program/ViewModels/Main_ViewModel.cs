@@ -23,7 +23,6 @@ namespace RCS_Setting_Program.ViewModels
     {
         SerialCom serialCom;
 
-        public static int test1;
 
         //통신접속
         private bool _btnConnect;
@@ -65,6 +64,7 @@ namespace RCS_Setting_Program.ViewModels
             set => base.OnPropertyChanged(ref _relayAList, value);
         }
 
+
         //A접점 콤보박스 선택값
         private int _relayASelect;
         public int relayASelect
@@ -72,35 +72,35 @@ namespace RCS_Setting_Program.ViewModels
             get => _relayASelect;
             set
             {
-                if(base.OnPropertyChanged(ref _relayASelect, value)) //A접점 콤보박스값이 변경?
+                if (base.OnPropertyChanged(ref _relayASelect, value)) //A접점 콤보박스값이 변경?
                 {
                     if (value > 0)
                     {
-                        
-                            for (int i = 0; i < rcuLists.Count; i++) //라이트스위치 개수만큼 (ADD한만큼)
+
+                        for (int i = 0; i < rcuLists.Count; i++) //라이트스위치 개수만큼 (ADD한만큼)
+                        {
+                            foreach (var item in rcuLists[i].relayLists) //라이트스위치별 릴레이(32개)만큼)
                             {
-                                foreach (var item in rcuLists[i].relayLists) //라이트스위치별 릴레이(32개)만큼)
+                                item.circuitNo.Clear();
+
+                                for (int j = 1; j < rcuLists[i].selectNum + 1; j++)
                                 {
-                                    item.circuitNo.Clear();
+                                    item.circuitNo.Add(new MatchItem() { Value = j, Division = "L", Display = $"{j}번 회로" }); //선택한 회로수만큼 추가
+                                }
 
-                                    for (int j = 1; j < rcuLists[i].selectNum + 1; j++)
-                                    {
-                                        item.circuitNo.Add(new MatchItem() { Value = j, Division = "L", Display = $"{j}번 회로" }); //선택한 회로수만큼 추가
-                                    }
+                                for (int k = 1; k <= value; k++)
+                                {
+                                    item.circuitNo.Add(new MatchItem() { Value = 7, Division = "A", Display = $"A, {k}번" }); //A접점 추가
+                                }
 
-                                    for (int k = 1; k <= value; k++)
-                                    {
-                                        item.circuitNo.Add(new MatchItem() { Value = k, Division = "A", Display = $"A, {k}번" }); //A접점 추가
-                                    }
-
-                                    for (int h = 1; h <= relayBSelect; h++)
-                                    {
-                                        item.circuitNo.Add(new MatchItem() { Value = h, Division = "B", Display = $"B, {h}번" }); //B접점 추가
-                                    }
+                                for (int h = 1; h <= relayBSelect; h++)
+                                {
+                                    item.circuitNo.Add(new MatchItem() { Value = 8, Division = "B", Display = $"B, {h}번" }); //B접점 추가
                                 }
                             }
-                       
-                        
+                        }
+
+
                     }
                     else //'0'을 선택?
                     {
@@ -117,12 +117,12 @@ namespace RCS_Setting_Program.ViewModels
 
                                 for (int k = 1; k <= value; k++)
                                 {
-                                    item.circuitNo.Add(new MatchItem() { Value = k, Division = "A", Display = $"A, {k}번" }); //A접점 추가
+                                    item.circuitNo.Add(new MatchItem() { Value = 7, Division = "A", Display = $"A, {k}번" }); //A접점 추가
                                 }
 
                                 for (int h = 1; h <= relayBSelect; h++)
                                 {
-                                    item.circuitNo.Add(new MatchItem() { Value = h, Division = "B", Display = $"B, {h}번" }); //B접점 추가
+                                    item.circuitNo.Add(new MatchItem() { Value = 8, Division = "B", Display = $"B, {h}번" }); //B접점 추가
                                 }
                             }
                         }
@@ -163,12 +163,12 @@ namespace RCS_Setting_Program.ViewModels
 
                                 for (int k = 1; k <= value; k++)
                                 {
-                                    item.circuitNo.Add(new MatchItem() { Value = k, Division = "B", Display = $"B, {k}번" });
+                                    item.circuitNo.Add(new MatchItem() { Value = 8, Division = "B", Display = $"B, {k}번" });
                                 }
 
                                 for (int h = 1; h <= relayASelect; h++)
                                 {
-                                    item.circuitNo.Add(new MatchItem() { Value = h, Division = "A", Display = $"A, {h}번" });
+                                    item.circuitNo.Add(new MatchItem() { Value = 7, Division = "A", Display = $"A, {h}번" });
                                 }
                             }
                         }
@@ -188,12 +188,12 @@ namespace RCS_Setting_Program.ViewModels
 
                                 for (int k = 1; k <= value; k++)
                                 {
-                                    item.circuitNo.Add(new MatchItem() { Value = k, Division = "B", Display = $"B, {k}번" });
+                                    item.circuitNo.Add(new MatchItem() { Value = 8, Division = "B", Display = $"B, {k}번" });
                                 }
 
                                 for (int h = 1; h <= relayASelect; h++)
                                 {
-                                    item.circuitNo.Add(new MatchItem() { Value = h, Division = "A", Display = $"A, {h}번" });
+                                    item.circuitNo.Add(new MatchItem() { Value = 7, Division = "A", Display = $"A, {h}번" });
                                 }
                             }
                         }
@@ -282,6 +282,14 @@ namespace RCS_Setting_Program.ViewModels
             set => base.OnPropertyChanged(ref _realTime, value);
         }
 
+        //FW Set Mode
+        private bool _fwMode = false;
+        public bool fwMode
+        {
+            get => _fwMode;
+            set => base.OnPropertyChanged(ref _fwMode, value);
+        }
+
         //Protocol
         private string _protocol = "STX | DATA TYPE | CMD | DTC COUNT | RCU COUNT | DTC N COUNT | ETX";
         public string protocol
@@ -304,12 +312,12 @@ namespace RCS_Setting_Program.ViewModels
         {
             onTimeMethod();
 
-            foreach(string port in SerialPort.GetPortNames())
+            foreach (string port in SerialPort.GetPortNames())
             {
                 portLists.Add(port);
             }
         }
-        
+
         //Real Time
         public void onTimeMethod()
         {
@@ -321,6 +329,21 @@ namespace RCS_Setting_Program.ViewModels
             };
 
             timer.Start();
+        }
+
+        //FW Setting Mode
+        public bool FW_Setting()
+        {
+            if (MessageBox.Show("펌웨어 세팅모드로 설정하시겠습니까?", "Yes-No", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+
+                return true;
+            }
+            else
+            {
+
+                return false;
+            }
         }
 
         //Comport Refresh
@@ -341,26 +364,28 @@ namespace RCS_Setting_Program.ViewModels
 
             frameSource = $"/Views/{btn.Name}.xaml";
 
-            switch(btn.Name)
+            switch (btn.Name)
             {
-                case "Main_View": 
+                case "Main_View":
                     pageNum = 1;
                     protocol = "STX | DATA TYPE | CMD | DTC COUNT | RCU COUNT | DTC N COUNT | ETX";
                     break;
 
-                case "RCU_View": 
-                    pageNum = 2; 
-                    LS_ADD(); 
+                case "RCU_View":
+                    pageNum = 2;
+                    LS_ADD();
                     protocol = "STX | DATA TYPE | CMD | ROOM TYPE | L/S COUNT | BUTTON COUNT | MASTER USE | BATH USE | RELAY COUNT | RELAY NAME | RELAY CIRCUIT | ETX";
                     break;
-                case "Option_View": pageNum = 3; break;
+                case "Relay_View":
+                    pageNum = 3;
+                    break;
             }
         }
 
         //SERIALPORT OPEN & CLOSE
         public void Click_Connection(object sender, RoutedEventArgs e)
         {
-            if(!serialCom.IsOpen)
+            if (!serialCom.IsOpen)
             {
                 serialCom.OpenCom(selectPort, 19200, 8, StopBits.One, Parity.None);
                 btnConnect = true;
@@ -381,91 +406,111 @@ namespace RCS_Setting_Program.ViewModels
             {
                 dtcList.Add(new DTC_List("> DTC " + i, i));
             }
-            
+
         }
 
         //Main & RCU Transmit Logic
         public void Click_Trasmit(object sender, RoutedEventArgs e)
         {
-            List<string> strPacket = new List<string>();
-            
-            strPacket.Add(Constants.STX);
-
-            for (int i = 0; i < 4; i++)
+            if (FW_Setting() == false)
             {
-                strPacket.Add("?");
+                return;
             }
-
-            switch (pageNum)
+            else
             {
-                case 1: //MDU, DTC TX Packet
-                    strPacket.Add(Constants.CMD_MAIN);
-                    strPacket.Add(Convert.ToString(selectAllDTC));
-                    strPacket.Add(rcuAllCount.ToString("D2"));
+                byte[] Setbyte = new byte[4];
 
-                    switch (dtcList.Count)
-                    {
-                        case 1: strPacket.Add(dtcList[0].rcuCount.ToString("D2")); break;
+                Setbyte[0] = 0x28;
+                Setbyte[1] = 0x0A;
+                Setbyte[2] = 0x01;
+                Setbyte[3] = 0x29;
 
-                        default:
-                            foreach (var obj in dtcList)
-                            {
-                                strPacket.Add(dtcList[obj.address - 1].rcuCount.ToString("D2"));
-                            }
-                            break;
-                    }
-                break;
+                serialCom.Send(Setbyte);
 
-                case 2: //RCU TX Packet
-                    
-  
-                    strPacket.Add(Constants.CMD_RCU);
-                    strPacket.Add(Convert.ToString(selectCbMode));
-                    strPacket.Add(rcuLists.Count.ToString());
 
-                    for (int i = 1; i < rcuLists.Count+1; i++) //추가한 라이트스위치 개수만큼 for문실행
-                    {
-                        Rcu_List RCU = rcuLists[i-1]; //라이트스위치 객체 하나
-                        int relayCount = 0;
+                List<string> strPacket = new List<string>();
 
-                        strPacket.Add(RCU.selectNum.ToString());
-                        strPacket.Add(Convert.ToInt32(RCU.masterUse).ToString());
-                        strPacket.Add(Convert.ToInt32(RCU.bathUse).ToString());
+                strPacket.Add(Constants.STX);
 
-                        for (int n = 0; n < 32; n++) //체크된 릴레이 총개수
+                for (int i = 0; i < 4; i++)
+                {
+                    strPacket.Add("?");
+                }
+
+                switch (pageNum)
+                {
+                    case 1: //MDU, DTC TX Packet
+                        strPacket.Add(Constants.CMD_MAIN);
+                        strPacket.Add(Convert.ToString(selectAllDTC));
+                        strPacket.Add(rcuAllCount.ToString("D2"));
+
+                        switch (dtcList.Count)
                         {
-                            if (RCU.relayLists[n].IsChecked == true)
-                            {
-                                relayCount += 1;
-                            }
-                        }
+                            case 1: strPacket.Add(dtcList[0].rcuCount.ToString("D2")); break;
 
-                        strPacket.Add(relayCount.ToString("D2"));
-
-                        for (int k = 0; k < 32; k++) //릴레이 no, circuit
-                        {
-                            if (RCU.relayLists[k].IsChecked == true) //체크가 되어있거나?
-                            {
-                                if (RCU.relayLists[k].selectCircuitNo.Value != 0)
+                            default:
+                                foreach (var obj in dtcList)
                                 {
-                                    strPacket.Add(RCU.relayLists[k].relayNo.ToString("D2"));
-                                    strPacket.Add(RCU.relayLists[k].selectCircuitNo.Value.ToString());
+                                    strPacket.Add(dtcList[obj.address - 1].rcuCount.ToString("D2"));
+                                }
+                                break;
+                        }
+                        break;
+
+                    case 2: //RCU TX Packet
+
+                        strPacket.Add(Constants.CMD_RCU);
+                        strPacket.Add(Convert.ToString(selectCbMode));
+                        strPacket.Add(rcuLists.Count.ToString());
+
+
+
+                        for (int i = 1; i < rcuLists.Count + 1; i++) //LS 개수만큼
+                        {
+                            int relayCount = 0;
+                            Rcu_List LS = rcuLists[i - 1];
+
+                            strPacket.Add(LS.selectNum.ToString()); //회로수
+                            strPacket.Add(Convert.ToInt32(LS.masterUse).ToString()); //마스터
+                            strPacket.Add(Convert.ToInt32(LS.bathUse).ToString());   //화장실
+
+                            for (int w = 0; w < 32; w++)
+                            {
+                                if (LS.relayLists[w].IsChecked == true)
+                                {
+                                    relayCount += 1;
+                                }
+                            }
+                            strPacket.Add(relayCount.ToString());
+
+                            for (int j = 0; j < 32; j++)
+                            {
+                                if (LS.relayLists[j].IsChecked == true)
+                                {
+                                    if (LS.relayLists[j].selectCircuitNo.Value != 0)
+                                    {
+                                        strPacket.Add(LS.relayLists[j].relayNo.ToString("D2"));
+                                        strPacket.Add(i.ToString());
+                                        strPacket.Add(LS.relayLists[j].selectCircuitNo.Value.ToString());
+                                    }
+                                    else return;
                                 }
                             }
                         }
-                    }
-                break;
-            }
-            strPacket.Add(Constants.ETX);
-            Console.Write(strPacket);
 
-            byte[] bytes = strPacket.SelectMany(x=> Encoding.ASCII.GetBytes(x)).ToArray();
-            string hexstring = strPacket.Aggregate((x,y) => x + y);
-            txLogPacket = " 송신 : " + ConvertHelper.ConvertStringToHexString(hexstring);
-            
-            serialCom.Send(bytes);
+                        break;
+                }
+                strPacket.Add(Constants.ETX);
+                Console.Write(strPacket);
+
+                byte[] bytes = strPacket.SelectMany(x => Encoding.ASCII.GetBytes(x)).ToArray();
+                string hexstring = strPacket.Aggregate((x, y) => x + y);
+                txLogPacket = " 송신 : " + ConvertHelper.ConvertStringToHexString(hexstring);
+
+                serialCom.Send(bytes);
+            }
         }
-    
+
         //Light Switch Plus
         public void LS_ADD()
         {
@@ -475,7 +520,7 @@ namespace RCS_Setting_Program.ViewModels
         //Light Switch Minus
         public void LS_Delete()
         {
-            rcuLists.RemoveAt(rcuLists.Count-1);
+            rcuLists.RemoveAt(rcuLists.Count - 1);
         }
     }
 }

@@ -1,0 +1,17 @@
+C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_TCP Server\obj\Debug\WPF_TCP Server.csproj.AssemblyReference.cache
+C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_TCP Server\obj\Debug\WPF_TCP Server.csproj.SuggestedBindingRedirects.cache
+C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_TCP Server\obj\Debug\MainWindow.g.cs
+C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_TCP Server\obj\Debug\App.g.cs
+C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_TCP Server\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_TCP Server\obj\Debug\WPF_TCP Server_MarkupCompile.cache
+C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_TCP Server\obj\Debug\WPF_TCP Server_MarkupCompile.lref
+C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_TCP Server\bin\Debug\WPF_TCP Server.exe.config
+C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_TCP Server\bin\Debug\WPF_TCP Server.exe
+C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_TCP Server\bin\Debug\WPF_TCP Server.pdb
+C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_TCP Server\obj\Debug\MainWindow.baml
+C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_TCP Server\obj\Debug\WPF_TCP Server.g.resources
+C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_TCP Server\obj\Debug\WPF_TCP_Server.Properties.Resources.resources
+C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_TCP Server\obj\Debug\WPF_TCP Server.csproj.GenerateResource.cache
+C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_TCP Server\obj\Debug\WPF_TCP Server.csproj.CoreCompileInputs.cache
+C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_TCP Server\obj\Debug\WPF_TCP Server.exe
+C:\Users\swjang\Desktop\개인자료\Git_WPF\WPF_TCP Server\obj\Debug\WPF_TCP Server.pdb

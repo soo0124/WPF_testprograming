@@ -43,3 +43,5 @@ C:\Users\swjang\Desktop\개인자료\Git_WPF\RCS_Setting_Program\obj\Debug\Views
 C:\Users\swjang\Desktop\개인자료\Git_WPF\RCS_Setting_Program\obj\Debug\Views\Main_View.baml
 C:\Users\swjang\Desktop\개인자료\Git_WPF\RCS_Setting_Program\obj\Debug\Views\RCU_View.g.cs
 C:\Users\swjang\Desktop\개인자료\Git_WPF\RCS_Setting_Program\obj\Debug\Views\RCU_View.baml
+C:\Users\swjang\Desktop\개인자료\Git_WPF\RCS_Setting_Program\obj\Debug\Views\Relay_View.g.cs
+C:\Users\swjang\Desktop\개인자료\Git_WPF\RCS_Setting_Program\obj\Debug\Views\Relay_View.baml

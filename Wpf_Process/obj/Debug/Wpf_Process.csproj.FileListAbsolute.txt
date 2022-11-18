@@ -1,0 +1,16 @@
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Wpf_Process\bin\Debug\Wpf_Process.exe.config
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Wpf_Process\bin\Debug\Wpf_Process.exe
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Wpf_Process\bin\Debug\Wpf_Process.pdb
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Wpf_Process\obj\Debug\Wpf_Process.csproj.AssemblyReference.cache
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Wpf_Process\obj\Debug\Wpf_Process.csproj.SuggestedBindingRedirects.cache
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Wpf_Process\obj\Debug\MainWindow.g.cs
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Wpf_Process\obj\Debug\App.g.cs
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Wpf_Process\obj\Debug\Wpf_Process_MarkupCompile.cache
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Wpf_Process\obj\Debug\Wpf_Process_MarkupCompile.lref
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Wpf_Process\obj\Debug\MainWindow.baml
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Wpf_Process\obj\Debug\Wpf_Process.g.resources
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Wpf_Process\obj\Debug\Wpf_Process.Properties.Resources.resources
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Wpf_Process\obj\Debug\Wpf_Process.csproj.GenerateResource.cache
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Wpf_Process\obj\Debug\Wpf_Process.csproj.CoreCompileInputs.cache
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Wpf_Process\obj\Debug\Wpf_Process.exe
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Wpf_Process\obj\Debug\Wpf_Process.pdb

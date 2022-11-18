@@ -1,0 +1,11 @@
+C:\Users\swjang\Desktop\개인자료\Git_WPF\RestAPI_Sample\bin\Debug\RestAPI_Sample.exe.config
+C:\Users\swjang\Desktop\개인자료\Git_WPF\RestAPI_Sample\bin\Debug\RestAPI_Sample.exe
+C:\Users\swjang\Desktop\개인자료\Git_WPF\RestAPI_Sample\bin\Debug\RestAPI_Sample.pdb
+C:\Users\swjang\Desktop\개인자료\Git_WPF\RestAPI_Sample\bin\Debug\Newtonsoft.Json.dll
+C:\Users\swjang\Desktop\개인자료\Git_WPF\RestAPI_Sample\bin\Debug\Newtonsoft.Json.xml
+C:\Users\swjang\Desktop\개인자료\Git_WPF\RestAPI_Sample\obj\Debug\RestAPI_Sample.csproj.AssemblyReference.cache
+C:\Users\swjang\Desktop\개인자료\Git_WPF\RestAPI_Sample\obj\Debug\RestAPI_Sample.csproj.SuggestedBindingRedirects.cache
+C:\Users\swjang\Desktop\개인자료\Git_WPF\RestAPI_Sample\obj\Debug\RestAPI_Sample.csproj.CoreCompileInputs.cache
+C:\Users\swjang\Desktop\개인자료\Git_WPF\RestAPI_Sample\obj\Debug\RestAPI_Sample.csproj.CopyComplete
+C:\Users\swjang\Desktop\개인자료\Git_WPF\RestAPI_Sample\obj\Debug\RestAPI_Sample.exe
+C:\Users\swjang\Desktop\개인자료\Git_WPF\RestAPI_Sample\obj\Debug\RestAPI_Sample.pdb

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace TCP_Server
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {

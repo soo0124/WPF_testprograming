@@ -1,7 +1,7 @@
 ﻿SoftwareFusionProject_JSH
 
 
-winexe
+exe
 C#
 .cs
 C:\Users\swjang\Desktop\개인자료\Git_WPF\SoftwareFusionProject_JSH\obj\Debug\
@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\swjang\Desktop\개인자료\Git_WPF\SoftwareFusionProject_JSH\App.xaml
-1219584333
+3-1179973051
 
-6-502434485
-13-1310406943
-MainWindow.xaml;
+18-1615157545
+31-728273234
+Views\Lecture.xaml;Views\MainWindow.xaml;Views\SetupView.xaml;
 
-True
+False
 
