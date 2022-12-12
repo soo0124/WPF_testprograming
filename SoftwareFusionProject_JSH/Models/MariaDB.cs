@@ -9,11 +9,17 @@ using System.Windows;
 
 namespace WPF_DB.MODELS
 {
+    public delegate void DBReceiveHandler(IDataRecord dataRecord);
+
     public class MariaDB
     {
         public MySqlConnection DBCONN;
 
         private string connectionPath;
+
+        //public event DBReceiveHandler DBReceive;
+
+        DataTable dataTable = new DataTable();
 
         public MariaDB(string pDBIp, string pDBPort, string pDBName, string pDBUser, string pDBPasswd)
         {
@@ -23,6 +29,7 @@ namespace WPF_DB.MODELS
                               "Port=" + pDBPort + ";" +
                               "pwd=" + pDBPasswd;
         }
+
 
         public Boolean Access_Insert(int intNo, int intCode, int boolDiv, string dateTime)
         {
@@ -36,9 +43,9 @@ namespace WPF_DB.MODELS
 
                     MySqlCommand cmd = conn.CreateCommand();
 
-                    String sql = $"INSERT INTO access VALUES ('{intNo}', '{intCode}', '{boolDiv}', '{dateTime}');";
+                    String insertSql = $"INSERT INTO access VALUES ('{intNo}', '{intCode}', '{boolDiv}', '{dateTime}');";
 
-                    cmd.CommandText = sql;
+                    cmd.CommandText = insertSql;
                     cmd.CommandType = CommandType.Text;
 
                     cmd.ExecuteReader(); //실행 
@@ -64,84 +71,36 @@ namespace WPF_DB.MODELS
             return result;
         }
 
-        public Boolean AddDB(int pIntA, int pIntB, int pIntC)
+        public DataTable Access_Read()
         {
-            Boolean result = false;
-
             using (MySqlConnection conn = new MySqlConnection(connectionPath))
             {
                 try
                 {
-                    conn.Open(); //접근
+                    conn.Open();
 
                     MySqlCommand cmd = conn.CreateCommand();
 
-                    String sql = $"INSERT INTO abc VALUES ({pIntA}, {pIntB}, {pIntC})";
+                    String readSql = $"SELECT * FROM access ORDER BY No;";
 
-                    cmd.CommandText = sql;
+                    cmd.CommandText = readSql;
                     cmd.CommandType = CommandType.Text;
 
-                    cmd.ExecuteReader(); //실행 
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(readSql, conn);
 
-                    cmd.Dispose();  //힙에있는 실행내용을 지운다. gc 우선순위 명령
+                    dataTable.Clear();
+
+                    adapter.Fill(dataTable);
 
                     conn.Close();
                     conn.Dispose();
-
-                    result = true;
                 }
-                catch (MySqlException ex1)
+                catch (Exception e)
                 {
-                    MessageBox.Show(ex1.Message);
-                    result = false;
-                }
-                catch (AggregateException ex2)
-                {
-                    MessageBox.Show(ex2.Message);
-                    result = false;
+                    MessageBox.Show(e.ToString());
                 }
             }
-            return result;
-        }
-
-        public Boolean AddDB(string pSendTime, string pSendMsg, string pRcvMsg, string pRcvTime)
-        {
-            Boolean result = false;
-
-            using (MySqlConnection conn = new MySqlConnection(connectionPath))
-            {
-                try
-                {
-                    conn.Open(); //접근
-
-                    MySqlCommand cmd = conn.CreateCommand();
-
-                    String sql = $"INSERT INTO encoder VALUES ('{pSendTime}', '{pSendMsg}', '{pRcvMsg}', '{pRcvTime}')";
-
-                    cmd.CommandText = sql;
-                    cmd.CommandType = CommandType.Text;
-
-                    cmd.ExecuteReader(); //실행 
-
-                    cmd.Dispose();  //힙에있는 실행내용을 지운다. gc 우선순위 명령
-
-                    conn.Close();
-                    conn.Dispose();
-
-                    result = true;
-                }
-                catch (MySqlException ex1)
-                {
-                    MessageBox.Show(ex1.Message);
-                    result = false;
-                }
-                catch (AggregateException ex2)
-                {
-                    MessageBox.Show(ex2.Message);
-                    result = false;
-                }
-            }
-            return result;
+            return dataTable;
         }
     }
 }

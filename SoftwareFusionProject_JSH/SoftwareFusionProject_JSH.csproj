@@ -107,7 +107,6 @@
     <Compile Include="Models\MariaDB.cs" />
     <Compile Include="Models\Notify.cs" />
     <Compile Include="Models\Person.cs" />
-    <Compile Include="Models\SerialCom.cs" />
     <Compile Include="Models\SerialTest.cs" />
     <Compile Include="ViewModels\Main_VM_Property.cs" />
     <Compile Include="ViewModels\Main_ViewModel.cs" />

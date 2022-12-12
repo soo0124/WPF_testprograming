@@ -1,0 +1,15 @@
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Syntax Test\bin\Debug\net6.0\Syntax Test.exe
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Syntax Test\bin\Debug\net6.0\Syntax Test.deps.json
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Syntax Test\bin\Debug\net6.0\Syntax Test.runtimeconfig.json
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Syntax Test\bin\Debug\net6.0\Syntax Test.dll
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Syntax Test\bin\Debug\net6.0\Syntax Test.pdb
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Syntax Test\obj\Debug\net6.0\Syntax Test.csproj.AssemblyReference.cache
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Syntax Test\obj\Debug\net6.0\Syntax Test.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Syntax Test\obj\Debug\net6.0\Syntax Test.AssemblyInfoInputs.cache
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Syntax Test\obj\Debug\net6.0\Syntax Test.AssemblyInfo.cs
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Syntax Test\obj\Debug\net6.0\Syntax Test.csproj.CoreCompileInputs.cache
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Syntax Test\obj\Debug\net6.0\Syntax Test.dll
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Syntax Test\obj\Debug\net6.0\refint\Syntax Test.dll
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Syntax Test\obj\Debug\net6.0\Syntax Test.pdb
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Syntax Test\obj\Debug\net6.0\Syntax Test.genruntimeconfig.cache
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Syntax Test\obj\Debug\net6.0\ref\Syntax Test.dll

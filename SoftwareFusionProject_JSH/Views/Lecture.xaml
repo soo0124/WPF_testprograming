@@ -39,8 +39,8 @@
         <DataGrid Grid.Column="1" Grid.Row="2" AutoGenerateColumns="False" Background="White" Margin="10,10,10,20" ItemsSource="{Binding accessLog}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="순서" Binding="{Binding No}" Width="2*"/>
-                <DataGridTextColumn Header="출입" Binding="{Binding access}" Width="3*"/>
-                <DataGridTextColumn Header="사람" Binding="{Binding human}" Width="3*"/>
+                <DataGridTextColumn Header="학번" Binding="{Binding code}" Width="4*"/>
+                <DataGridTextColumn Header="출입" Binding="{Binding division}" Width="2*"/>
                 <DataGridTextColumn Header="시간" Binding="{Binding eventTime}" Width="6*"/>
             </DataGrid.Columns>
         </DataGrid>

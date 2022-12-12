@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
+using System.Windows.Threading;
 using LiveCharts;
 using SoftwareFusionProject_JSH.Models;
 using WPF_DB.MODELS;
@@ -30,12 +33,19 @@ namespace SoftwareFusionProject_JSH.ViewModels
         {
             serialD = new SerialTest("D");
             serialR = new SerialTest("R");
-            
+            mariaDB = new MariaDB("localhost", "3306", "lecture", "root", "racos5117");
 
             Initializing();
 
             serialD.ByteReceive += PortByteReceived_D;
             serialR.ByteReceive += PortByteReceived_R;
+
+            Timer timer = new Timer();
+
+            timer.Interval = 3000; //3초
+            timer.Elapsed += new ElapsedEventHandler(timer_Elapsed);
+            timer.Start();
+
         }
 
         public void Initializing()
@@ -133,11 +143,33 @@ namespace SoftwareFusionProject_JSH.ViewModels
 
         public void AccessList_Insert()
         {
-            mariaDB = new MariaDB("localhost", "3306", "lecture", "root", "racos5117");
-
             DateTime date = DateTime.Now;
 
             mariaDB.Access_Insert(1, Int32.Parse(accessStatus.Substring(1, 8)), 1, date.ToString("yyyy-MM-dd HH:mm:ss"));
+        }
+
+        private void timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(delegate
+            {
+                DataTable dataTable = new DataTable();
+
+                dataTable = mariaDB.Access_Read();
+
+                string a,b,c,d;
+
+                accessLog.Clear();
+
+                for (int i = 0; i < dataTable.Rows.Count; i++)
+                {
+                    a = dataTable.Rows[i]["No"].ToString();
+                    b = dataTable.Rows[i]["Code"].ToString();
+                    c = dataTable.Rows[i]["Division"].ToString();
+                    d = dataTable.Rows[i]["Time"].ToString();
+                    
+                    accessLog.Add(new Acess(a,b,c,d));
+                }
+            }));
         }
     }
 }

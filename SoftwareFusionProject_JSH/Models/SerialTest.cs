@@ -8,6 +8,8 @@ using System.Diagnostics;
 
 namespace SoftwareFusionProject_JSH.Models
 {
+    public delegate void ByteReceiveHandler(byte[] packet);
+
     public class SerialTest
     {
         /// <summary>
@@ -18,8 +20,6 @@ namespace SoftwareFusionProject_JSH.Models
         private List<byte> serialBuffer = new List<byte>();
 
         public event ByteReceiveHandler ByteReceive;
-
-        private int flagNum = 0;
 
         public bool IsOpen
         {

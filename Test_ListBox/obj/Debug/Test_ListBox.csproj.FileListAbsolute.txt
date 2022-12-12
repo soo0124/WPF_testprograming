@@ -1,0 +1,17 @@
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Test_ListBox\bin\Debug\Test_ListBox.exe.config
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Test_ListBox\bin\Debug\Test_ListBox.exe
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Test_ListBox\bin\Debug\Test_ListBox.pdb
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Test_ListBox\obj\Debug\Test_ListBox.csproj.AssemblyReference.cache
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Test_ListBox\obj\Debug\Test_ListBox.csproj.SuggestedBindingRedirects.cache
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Test_ListBox\obj\Debug\MainWindow.g.cs
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Test_ListBox\obj\Debug\App.g.cs
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Test_ListBox\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Test_ListBox\obj\Debug\Test_ListBox_MarkupCompile.cache
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Test_ListBox\obj\Debug\Test_ListBox_MarkupCompile.lref
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Test_ListBox\obj\Debug\MainWindow.baml
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Test_ListBox\obj\Debug\Test_ListBox.g.resources
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Test_ListBox\obj\Debug\Test_ListBox.Properties.Resources.resources
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Test_ListBox\obj\Debug\Test_ListBox.csproj.GenerateResource.cache
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Test_ListBox\obj\Debug\Test_ListBox.csproj.CoreCompileInputs.cache
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Test_ListBox\obj\Debug\Test_ListBox.exe
+C:\Users\swjang\Desktop\개인자료\Git_WPF\Test_ListBox\obj\Debug\Test_ListBox.pdb
