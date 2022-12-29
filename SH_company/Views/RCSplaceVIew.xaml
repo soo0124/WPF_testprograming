@@ -1,0 +1,87 @@
+﻿<Page x:Class="SH_company.Views.RCSplaceVIew"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SH_company.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="870" d:DesignWidth="1680"
+      Title="RCSplaceVIew">
+
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+
+        <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="  RCS 현장명 : " FontWeight="Bold"/>
+        <TextBox Text="{Binding txt_place}" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" Width="140" Height="30" VerticalContentAlignment="Center"/>
+
+        <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Text="  영업담당자 : " FontWeight="Bold"/>
+        <TextBox Text="{Binding txt_sale}" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Width="140" Height="30" VerticalContentAlignment="Center"/>
+
+        <TextBlock Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" Text="  공사담당자 : " FontWeight="Bold"/>
+        <TextBox Text="{Binding txt_pm}" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right" Width="140" Height="30" VerticalContentAlignment="Center"/>
+
+        <TextBlock Grid.Column="3" Grid.Row="0" VerticalAlignment="Center" Text="  A/S담당자 : " FontWeight="Bold"/>
+        <TextBox Text="{Binding txt_as}" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Right" Width="140" Height="30" VerticalContentAlignment="Center"/>
+
+        <TextBlock Grid.Column="4" Grid.Row="0" VerticalAlignment="Center" Text="  객실 수량 : " FontWeight="Bold"/>
+        <TextBox Text="{Binding txt_roomCnt}" Grid.Column="4" Grid.Row="0" HorizontalAlignment="Right" Width="140" Height="30" VerticalContentAlignment="Center"/>
+
+        <Button Click="{local:MethodBinding Btn_PlaceSave}" Grid.Column="5" Grid.Row="0" Width="100" Height="50" HorizontalAlignment="Left" Margin="50,0,0,0" Content="저장" FontSize="15" FontWeight="Bold" Background="DarkKhaki">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+
+        <DataGrid SelectedIndex="{Binding testbtn}" x:Name="dataGrid" Grid.Row="1" Grid.ColumnSpan="6" AutoGenerateColumns="False" Margin="10,10,10,10" ItemsSource="{Binding rcsPlace}">
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="FontSize" Value="13"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                </Style>
+            </DataGrid.CellStyle>
+
+                <DataGrid.Columns>
+                <DataGridTextColumn Header="순서" Binding="{Binding No}" Width="1*"/>
+                <DataGridTextColumn Header="현장" Binding="{Binding Place}" Width="2*"/>
+                <DataGridTextColumn Header="날짜" Binding="{Binding Date}" Width="2*"/>
+                <DataGridTextColumn Header="영업 담당자" Binding="{Binding Sale}" Width="2*"/>
+                <DataGridTextColumn Header="공사 담당자" Binding="{Binding PM}" Width="2*"/>
+                <DataGridTextColumn Header="A/S 담당자" Binding="{Binding AS}" Width="2*"/>
+                <DataGridTextColumn Header="객실 수" Binding="{Binding roomCnt}" Width="2*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button Click="{local:MethodBinding Btn_PlaceDelete}" Grid.Column="5" Grid.Row="2" Width="100" Height="50" HorizontalAlignment="Left" Margin="50,0,0,0" Content="삭제" FontSize="15" FontWeight="Bold" Background="DarkKhaki">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+    </Grid>
+</Page>

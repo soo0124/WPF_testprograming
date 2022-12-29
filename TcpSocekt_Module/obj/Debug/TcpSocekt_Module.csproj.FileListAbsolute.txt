@@ -1,0 +1,17 @@
+C:\Users\swjang\Desktop\개인자료\Git_WPF\TcpSocekt_Module\obj\Debug\TcpSocekt_Module.csproj.AssemblyReference.cache
+C:\Users\swjang\Desktop\개인자료\Git_WPF\TcpSocekt_Module\obj\Debug\TcpSocekt_Module.csproj.SuggestedBindingRedirects.cache
+C:\Users\swjang\Desktop\개인자료\Git_WPF\TcpSocekt_Module\obj\Debug\View\MainWindow.g.cs
+C:\Users\swjang\Desktop\개인자료\Git_WPF\TcpSocekt_Module\obj\Debug\App.g.cs
+C:\Users\swjang\Desktop\개인자료\Git_WPF\TcpSocekt_Module\obj\Debug\TcpSocekt_Module_MarkupCompile.cache
+C:\Users\swjang\Desktop\개인자료\Git_WPF\TcpSocekt_Module\obj\Debug\TcpSocekt_Module_MarkupCompile.lref
+C:\Users\swjang\Desktop\개인자료\Git_WPF\TcpSocekt_Module\bin\Debug\TcpSocekt_Module.exe.config
+C:\Users\swjang\Desktop\개인자료\Git_WPF\TcpSocekt_Module\bin\Debug\TcpSocekt_Module.exe
+C:\Users\swjang\Desktop\개인자료\Git_WPF\TcpSocekt_Module\bin\Debug\TcpSocekt_Module.pdb
+C:\Users\swjang\Desktop\개인자료\Git_WPF\TcpSocekt_Module\obj\Debug\View\MainWindow.baml
+C:\Users\swjang\Desktop\개인자료\Git_WPF\TcpSocekt_Module\obj\Debug\TcpSocekt_Module.g.resources
+C:\Users\swjang\Desktop\개인자료\Git_WPF\TcpSocekt_Module\obj\Debug\TcpSocekt_Module.Properties.Resources.resources
+C:\Users\swjang\Desktop\개인자료\Git_WPF\TcpSocekt_Module\obj\Debug\TcpSocekt_Module.csproj.GenerateResource.cache
+C:\Users\swjang\Desktop\개인자료\Git_WPF\TcpSocekt_Module\obj\Debug\TcpSocekt_Module.csproj.CoreCompileInputs.cache
+C:\Users\swjang\Desktop\개인자료\Git_WPF\TcpSocekt_Module\obj\Debug\TcpSocekt_Module.exe
+C:\Users\swjang\Desktop\개인자료\Git_WPF\TcpSocekt_Module\obj\Debug\TcpSocekt_Module.pdb
+C:\Users\swjang\Desktop\개인자료\Git_WPF\TcpSocekt_Module\obj\Debug\GeneratedInternalTypeHelper.g.cs
