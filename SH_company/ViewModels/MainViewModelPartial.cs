@@ -12,6 +12,7 @@ namespace SH_company.ViewModels
     {
         public ObservableCollection<RcsModel> rcsPlace { get; set; }
 
+
         public string weatherURL = "https://www.kma.go.kr/XML/weather/sfc_web_map.xml";
         private string _YMD;
         public string YMD
@@ -46,7 +47,8 @@ namespace SH_company.ViewModels
         public string txt_pm { get; set; }
         public string txt_as { get; set; }
         public int txt_roomCnt { get; set; }
-
         public string testbtn { get; set; }
+
+
     }
 }
